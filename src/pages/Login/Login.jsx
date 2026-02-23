@@ -17,9 +17,15 @@ export const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Bienvenido ${inputForm.emailOrUsername}`);
+    const response = await fetch("http://localhost:3000/v1/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputForm),
+    });
+    const data = await response.json();
+    alert(data.message);
   };
 
   return (
