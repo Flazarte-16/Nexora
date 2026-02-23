@@ -1,0 +1,63 @@
+.input-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 15%;
+  right: 40%;
+  border: 1px solid #1e293b;
+  border-radius: 15px;
+  width: 500px;
+  height: 130px;
+  background-color: #111420;
+  gap: 50px;
+  padding: 15px;
+}
+
+.input-container img {
+  width: 45px;
+  height: auto;
+}
+
+.input-text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-container input {
+  background-color: #111420;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+
+.input-container button {
+  border-radius: 10px;
+  width: 90px;
+  height: 35px;
+  background-color: #4749ec;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  bottom: 20%;
+  right: 10%;
+}
+
+button:hover {
+  background-color: #6366f1;
+}
+
+.input-post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-post ion-icon {
+  color: #818cf8;
+}
+
+.input-container:hover ion-icon {
+  cursor: pointer;
+}
