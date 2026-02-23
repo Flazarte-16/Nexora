@@ -1,0 +1,87 @@
+.sidebar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 70px;
+  flex-direction: column;
+  border-right: 1px solid #1e293b;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar-container:hover {
+  width: 250px;
+  justify-content: flex-start;
+}
+.sidebar-container p {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar-container:hover p {
+  opacity: 1;
+  width: auto;
+}
+
+.sidebar-item {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  background-color: #1e293b;
+  border-radius: 20px;
+}
+
+.sidebar-item:hover ion-icon {
+  color: #fff;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nexora-logo {
+  width: 200px;
+  height: auto;
+}
+
+.sidebar-icon {
+  width: 30px;
+  height: auto;
+  color: #4f5a69;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 250px;
+}
+
+.profile p {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar-container:hover .profile p {
+  opacity: 1;
+  width: auto;
+}
+
+.profile img {
+  width: 50px;
+  height: auto;
+}
