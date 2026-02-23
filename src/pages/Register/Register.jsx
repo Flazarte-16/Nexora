@@ -4,6 +4,30 @@ import { Link } from "wouter";
 
 export const Register = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [inputForm, setInputForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleInputForm = (e) => {
+    setInputForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputForm.password !== inputForm.confirmPassword) {
+      alert("Las contraseñas deben ser iguales");
+      return;
+    }
+
+    alert(`Bienvenido ${inputForm.username}`);
+  };
 
   return (
     <main className="main main--auth">
@@ -23,14 +47,24 @@ export const Register = () => {
           </p>
         </section>
         <section className="auth-right-center">
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleSubmit}>
             <article className="input-container">
               <label>Username</label>
-              <input type="text" placeholder="example" />
+              <input
+                type="text"
+                placeholder="example"
+                name="username"
+                onChange={handleInputForm}
+              />
             </article>
             <article className="input-container">
               <label>Email</label>
-              <input type="text" placeholder="example@domain.com" />
+              <input
+                type="text"
+                placeholder="example@domain.com"
+                name="email"
+                onChange={handleInputForm}
+              />
             </article>
             <article className="input-container">
               <label>Password</label>
@@ -38,6 +72,8 @@ export const Register = () => {
                 <input
                   type={isShowPassword ? "text" : "password"}
                   placeholder="* * * * * *"
+                  name="password"
+                  onChange={handleInputForm}
                 />
                 <button
                   type="button"
@@ -55,6 +91,8 @@ export const Register = () => {
               <input
                 type={isShowPassword ? "text" : "password"}
                 placeholder="* * * * * *"
+                name="confirmPassword"
+                onChange={handleInputForm}
               />
             </article>
             <button className="btn">Continue</button>

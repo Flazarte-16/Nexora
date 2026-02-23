@@ -5,6 +5,22 @@ import { Link } from "wouter";
 
 export const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [inputForm, setInputForm] = useState({
+    emailOrUsername: "",
+    password: "",
+  });
+
+  const handleInputForm = (e) => {
+    setInputForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Bienvenido ${inputForm.emailOrUsername}`);
+  };
 
   return (
     <main className="main main--auth">
@@ -24,10 +40,15 @@ export const Login = () => {
           </p>
         </section>
         <section className="auth-right-center">
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleSubmit}>
             <article className="input-container">
               <label>Username or Email</label>
-              <input type="text" placeholder="example@domain.com" />
+              <input
+                type="text"
+                placeholder="example@domain.com"
+                name="emailOrUsername"
+                onChange={handleInputForm}
+              />
             </article>
             <article className="input-container">
               <label>Password</label>
@@ -35,6 +56,8 @@ export const Login = () => {
                 <input
                   type={isShowPassword ? "text" : "password"}
                   placeholder="* * * * * *"
+                  name="password"
+                  onChange={handleInputForm}
                 />
                 <button
                   type="button"
