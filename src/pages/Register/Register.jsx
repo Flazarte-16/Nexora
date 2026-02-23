@@ -18,15 +18,15 @@ export const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (inputForm.password !== inputForm.confirmPassword) {
-      alert("Las contraseñas deben ser iguales");
-      return;
-    }
-
-    alert(`Bienvenido ${inputForm.username}`);
+    const response = await fetch("http://localhost:3000/v1/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputForm),
+    });
+    const data = await response.json();
+    alert(data.message);
   };
 
   return (
