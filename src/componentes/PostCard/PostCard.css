@@ -1,0 +1,69 @@
+.post-card {
+  display: flex;
+  flex-direction: column;
+  width: 37.5rem;
+  min-height: 10rem;
+  padding: 1.25rem;
+  gap: 2rem;
+  background-color: #14182b;
+  border: 1px solid #1e293b;
+  border-radius: 1.25rem;
+
+  background-image:
+    radial-gradient(
+      300px circle at -10% 110%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      300px circle at 110% -10%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    );
+
+  transition:
+    border 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1.15rem;
+}
+
+.card-header img {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-header-info {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-header-info h4 {
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-header-info p {
+  color: #94a3b3;
+  letter-spacing: 0.6px;
+}
+
+.post-card-content {
+  color: white;
+}

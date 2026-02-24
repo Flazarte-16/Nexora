@@ -1,24 +1,67 @@
 .profiles-container {
-  position: fixed;
-  right: 10%;
-  top: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
+  top: 60px;
+  border-radius: 1.25rem;
+  width: 21.875rem;
+  background-color: #14182b;
   border: 1px solid #1e293b;
-  border-radius: 10px;
-  width: 450px;
-  height: 250px;
-  background-color: #111420;
+  position: absolute;
+  right: 1.25rem;
+  background-image:
+    radial-gradient(
+      300px circle at -10% 110%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      300px circle at 110% -10%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    );
+}
+
+.profiles-container h2 {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.2;
 }
 
 .profiles {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100px;
+}
+
+.profile-info h4 {
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-info p {
+  color: #94a3b3;
+  letter-spacing: 0.6px;
 }
 
 .profiles img {
@@ -31,12 +74,16 @@
   border-radius: 10px;
   width: 90px;
   height: 35px;
-  background-color: #4749ec;
-  color: #fff;
+  background-color: #1334d8;
+  border-radius: 10px;
+  color: white;
   border: none;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .Follow-button:hover {
-  background-color: #6366f1;
+  box-shadow: 0 4px 14px rgba(19, 52, 216, 0.35);
 }

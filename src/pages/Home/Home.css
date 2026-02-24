@@ -1,7 +1,13 @@
 .main--home {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: start;
   background-color: #101322;
-  padding-top: 100px;
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
+  padding-left: 20.625rem;
+  padding-right: 23.125rem;
+  position: relative;
+  gap: 20px;
 }
