@@ -82,8 +82,9 @@
 }
 
 .nexora-logo {
-  width: 11rem;
-  height: auto;
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
 }
 
 .sidebar-icon {
