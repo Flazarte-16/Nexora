@@ -6,10 +6,10 @@ import "ionicons";
 
 export const Home = () => {
   return (
-    <div className="container">
+    <main className="main main--home">
       <CreatePost />
       <SideBar />
       <Followers />
-    </div>
+    </main>
   );
 };

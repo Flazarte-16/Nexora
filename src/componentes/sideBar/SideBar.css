@@ -3,26 +3,35 @@
   left: 0;
   top: 0;
   height: 100vh;
-  width: 70px;
-  flex-direction: column;
-  border-right: 1px solid #1e293b;
-
+  width: 4.375rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-
-  transition: width 0.3s ease;
+  border-right: 1px solid #1e293b;
+  background-color: #101322;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
   overflow: hidden;
+  padding-top: 1.5rem;
 }
 
 .sidebar-container:hover {
-  width: 250px;
-  justify-content: flex-start;
+  width: 15.625rem;
+  align-items: flex-start;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
+
 .sidebar-container p {
   opacity: 0;
   width: 0;
   overflow: hidden;
+  white-space: nowrap;
+  transition:
+    opacity 0.2s ease,
+    width 0.2s ease;
 }
 
 .sidebar-container:hover p {
@@ -32,56 +41,100 @@
 
 .sidebar-item {
   display: flex;
-  gap: 10px;
-  padding: 15px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
   cursor: pointer;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+  width: 100%;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .sidebar-item:hover {
   background-color: #1e293b;
-  border-radius: 20px;
+  color: #ffffff;
+  transform: translateX(4px);
 }
 
 .sidebar-item:hover ion-icon {
-  color: #fff;
+  color: #ffffff;
 }
 
 .sidebar-logo {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 2rem;
 }
 
 .nexora-logo {
-  width: 200px;
+  width: 11rem;
   height: auto;
 }
 
 .sidebar-icon {
-  width: 30px;
-  height: auto;
-  color: #4f5a69;
+  color: #64748b;
+  font-size: 25px;
+  transition: color 0.2s ease;
+}
+
+.sidebar-item:hover .sidebar-icon {
+  color: #ffffff;
 }
 
 .profile {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 15px;
-  padding-top: 250px;
+  gap: 0.75rem;
+  margin-top: auto;
+  margin-bottom: 2rem;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.profile:hover {
+  background-color: #1e293b;
+}
+
+.profile img {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .profile p {
   opacity: 0;
   width: 0;
   overflow: hidden;
+  white-space: nowrap;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    opacity 0.2s ease,
+    width 0.2s ease;
 }
 
 .sidebar-container:hover .profile p {
   opacity: 1;
   width: auto;
-}
-
-.profile img {
-  width: 50px;
-  height: auto;
 }

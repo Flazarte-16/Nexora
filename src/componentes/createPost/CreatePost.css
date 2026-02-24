@@ -1,63 +1,102 @@
-.input-container {
-  position: fixed;
+.input-container-create {
   display: flex;
   flex-direction: column;
-  top: 15%;
-  right: 40%;
-  border: 1px solid #1e293b;
-  border-radius: 15px;
-  width: 500px;
-  height: 130px;
-  background-color: #111420;
-  gap: 50px;
-  padding: 15px;
-}
+  width: 37.5rem;
+  min-height: 11rem;
+  padding: 1.25rem;
+  gap: 2rem;
 
-.input-container img {
-  width: 45px;
-  height: auto;
+  background-color: #14182b;
+  border: 1px solid #1e293b;
+  border-radius: 1.25rem;
+
+  background-image:
+    radial-gradient(
+      300px circle at -10% 110%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      300px circle at 110% -10%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    );
+
+  transition:
+    border 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 .input-text {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
-.input-container input {
-  background-color: #111420;
-  border-radius: 5px;
+.input-container-create img {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.input-container-create input {
+  flex: 1;
+  background-color: transparent;
   border: none;
   outline: none;
-  color: #fff;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
 
-.input-container button {
-  border-radius: 10px;
-  width: 90px;
-  height: 35px;
-  background-color: #4749ec;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  bottom: 20%;
-  right: 10%;
-}
-
-button:hover {
-  background-color: #6366f1;
+.input-container-create input::placeholder {
+  color: #94a3b3;
+  font-size: 1rem;
 }
 
 .input-post {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .input-post ion-icon {
-  color: #818cf8;
+  color: #1334d8;
+  font-size: 1.25rem;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  cursor: pointer;
 }
 
-.input-container:hover ion-icon {
+.input-post ion-icon:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+.input-post button {
+  background-color: #1334d8;
+  width: 6rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  color: white;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-post button:hover {
+  box-shadow: 0 6px 18px rgba(19, 52, 216, 0.4);
+  transform: translateY(-2px);
+}
+
+.input-post button:active {
+  transform: scale(0.97);
 }
