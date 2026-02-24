@@ -6,13 +6,13 @@
   padding-bottom: 1.25rem;
   align-items: center;
   gap: 1.25rem;
-  top: 60px;
+  top: 130px;
   border-radius: 1.25rem;
   width: 21.875rem;
   background-color: #14182b;
   border: 1px solid #1e293b;
   position: absolute;
-  right: 1.25rem;
+  right: 7rem;
   background-image:
     radial-gradient(
       300px circle at -10% 110%,

@@ -10,7 +10,9 @@ export const SideBar = () => {
       <div className="item-container">
         <div className="sidebar-item">
           <ion-icon className="sidebar-icon" name="home-sharp"></ion-icon>
-          <p>Home</p>
+          <a href="/home">
+            <p>Home</p>
+          </a>
         </div>
         <div className="sidebar-item">
           <ion-icon className="sidebar-icon" name="compass-sharp"></ion-icon>
