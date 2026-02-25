@@ -7,8 +7,8 @@ export const Profile = () => {
         <article className="profile-topbar">
           <ion-icon name="arrow-back-outline"></ion-icon>
           <article>
-            <h2>Constantino Pasquali</h2>
-            <h3>2 posts</h3>
+            <h2 className="user-name">Constantino Pasquali</h2>
+            <h3 className="user-cant-post">2 posts</h3>
           </article>
         </article>
         <img
