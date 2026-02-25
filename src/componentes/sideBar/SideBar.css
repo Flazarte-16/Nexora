@@ -170,6 +170,7 @@
 .sidebar-container.sidebar-container--right p {
   overflow: visible;
   opacity: 1;
+  display: flex;
 }
 
 .sidebar-container.sidebar-container--right:hover {
