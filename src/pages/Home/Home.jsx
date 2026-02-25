@@ -9,7 +9,6 @@ export const Home = () => {
     <main className="main main--home">
       <CreatePost />
       <List />
-      <Followers />
     </main>
   );
 };

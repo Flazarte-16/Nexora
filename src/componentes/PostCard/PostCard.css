@@ -1,14 +1,13 @@
 .post-card {
   display: flex;
   flex-direction: column;
-  width: 37.5rem;
   min-height: 10rem;
   padding: 1.25rem;
   gap: 2rem;
   background-color: #14182b;
   border: 1px solid #1e293b;
   border-radius: 1.25rem;
-
+  width: 100%;
   background-image:
     radial-gradient(
       300px circle at -10% 110%,

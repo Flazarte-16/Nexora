@@ -2,12 +2,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   background-color: #101322;
   padding-top: 3.75rem;
   padding-bottom: 3.75rem;
   padding-left: 20.625rem;
-  padding-right: 23.125rem;
+  padding-right: 33.125rem;
   position: relative;
   gap: 20px;
+  width: 80%;
+  align-self: center;
+}
+
+@media (width <= 1440px) {
+  .main--home {
+    padding-left: 12rem;
+    padding-right: 24rem;
+  }
 }

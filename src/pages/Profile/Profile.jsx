@@ -1,4 +1,3 @@
-import { Followers } from "../../componentes/Followers/Followers";
 import "./Profile.css";
 
 export const Profile = () => {
@@ -37,7 +36,6 @@ export const Profile = () => {
           </span>
         </article>
       </section>
-      <Followers />
     </main>
   );
 };

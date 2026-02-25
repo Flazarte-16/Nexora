@@ -3,7 +3,7 @@ import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import { Route, Switch, useLocation } from "wouter";
 import { Home } from "./pages/Home/Home";
-import { SideBar } from "./componentes/sideBar/SideBar";
+import { RightSidebar, SideBar } from "./componentes/sideBar/SideBar";
 import { Profile } from "./pages/Profile/Profile";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
         <Route path="/profile" component={Profile} />
       </Switch>
       {location[0] !== "/" && location[0] !== "/register" && <SideBar />}
+      {location[0] !== "/" && location[0] !== "/register" && <RightSidebar />}
     </div>
   );
 }

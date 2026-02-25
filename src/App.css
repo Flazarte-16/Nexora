@@ -16,10 +16,15 @@
     sans-serif;
 }
 
+body {
+  background-color: #101322;
+}
+
 .app {
   display: flex;
   flex-direction: column;
   height: 100dvh;
+  background-color: #101322;
 }
 
 .main {

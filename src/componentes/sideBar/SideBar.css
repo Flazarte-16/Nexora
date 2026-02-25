@@ -27,6 +27,7 @@
 .sidebar-container p {
   opacity: 0;
   width: 0;
+  display: none;
   overflow: hidden;
   white-space: nowrap;
   transition:
@@ -34,8 +35,10 @@
     width 0.2s ease;
 }
 
-.sidebar-container:hover p {
+.sidebar-container:hover p,
+.sidebar-container:hover .relocation {
   opacity: 1;
+  display: flex;
   width: auto;
 }
 
@@ -54,6 +57,18 @@
     color 0.2s ease,
     transform 0.15s ease;
   width: 100%;
+  text-decoration: none;
+}
+
+.sidebar-item.active {
+  display: flex;
+  align-items: center;
+  background-color: #0f1c4d;
+}
+
+.sidebar-item.active p,
+.sidebar-item.active ion-icon {
+  color: #3b5bff;
 }
 
 .item-container {
@@ -138,4 +153,54 @@
 .sidebar-container:hover .profile p {
   opacity: 1;
   width: auto;
+}
+
+.sidebar-container.sidebar-container--right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 20rem;
+  right: 0;
+  border-left: 1px solid #1e293b;
+  border-right: 0;
+  left: auto;
+}
+
+.sidebar-container.sidebar-container--right p {
+  overflow: visible;
+  opacity: 1;
+}
+
+.sidebar-container.sidebar-container--right:hover {
+  width: 20rem;
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-container.sidebar-container--right input {
+  width: 90%;
+  height: 50px;
+  padding-left: 1rem;
+  background-color: transparent;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: white;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sidebar-container.sidebar-container--right input::placeholder {
+  color: #405569;
+  font-size: 0.95rem;
+}
+
+.sidebar-container.sidebar-container--right input:focus {
+  outline: none;
+  border: 1px solid #1334d8;
+  box-shadow: 0 0 0 3px rgba(19, 52, 216, 0.15);
 }
