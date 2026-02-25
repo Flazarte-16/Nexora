@@ -9,20 +9,8 @@
   top: 130px;
   border-radius: 1.25rem;
   width: 21.875rem;
-  background-color: #14182b;
   border: 1px solid #1e293b;
   position: absolute;
-  background-image:
-    radial-gradient(
-      300px circle at -10% 110%,
-      rgba(77, 100, 216, 0.25),
-      transparent 60%
-    ),
-    radial-gradient(
-      300px circle at 110% -10%,
-      rgba(77, 100, 216, 0.25),
-      transparent 60%
-    );
 }
 
 .profiles-container h2 {
