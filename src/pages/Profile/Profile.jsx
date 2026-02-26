@@ -1,6 +1,9 @@
 import "./Profile.css";
+import { posts } from "../../App";
+import { PostCard } from "../../componentes/PostCard/PostCard";
 
 export const Profile = () => {
+  const userPosts = posts.filter((post) => post.id === 5 || post.id === 6);
   return (
     <main className="main main--profile">
       <section className="user-info">
@@ -30,6 +33,11 @@ export const Profile = () => {
             <a href="https://www.instagram.com/coni.pasquali/">Instagram</a>
             <span>joined: 24/2/2026</span>
           </span>
+        </article>
+        <article>
+          {userPosts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
         </article>
       </section>
     </main>
