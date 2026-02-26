@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CreatePost } from "../../componentes/CreatePost/CreatePost";
-import { List } from "../../componentes/List/List";
 import "./Home.css";
 import "ionicons";
 import { PostCard } from "../../componentes/PostCard/PostCard";

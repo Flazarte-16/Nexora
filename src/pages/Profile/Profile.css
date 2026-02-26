@@ -29,6 +29,14 @@
   border-bottom: 1px solid #1e293b;
 }
 
+.profile-sections {
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+  padding-top: 25px;
+  color: #94a3b3;
+}
+
 .user-details {
   display: flex;
   flex-direction: column;

@@ -1,9 +1,21 @@
 import "./Profile.css";
-import { posts } from "../../App";
+import { useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
 
 export const Profile = () => {
-  const userPosts = posts.filter((post) => post.id === 5 || post.id === 6);
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const getPosts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/v1/posts");
+        const data = await response.json();
+        setPosts(data.posts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getPosts();
+  }, []);
   return (
     <main className="main main--profile">
       <section className="user-info">
@@ -33,9 +45,14 @@ export const Profile = () => {
             <a href="https://www.instagram.com/coni.pasquali/">Instagram</a>
             <span>joined: 24/2/2026</span>
           </span>
+          <article className="profile-sections">
+            <span>Posts</span>
+            <span>Media</span>
+            <span>Likes</span>
+          </article>
         </article>
         <article>
-          {userPosts.map((post) => (
+          {posts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </article>

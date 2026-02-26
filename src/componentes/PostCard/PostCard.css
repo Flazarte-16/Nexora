@@ -65,4 +65,32 @@
 
 .post-card-content {
   color: white;
+  border-bottom: 1px solid #1e293b;
+}
+
+.post-card-actions {
+  display: flex;
+  gap: 50px;
+}
+
+#coments {
+  width: 50px;
+  border-radius: 20px;
+}
+
+#coments:hover {
+  color: #3b5bff;
+  background-color: #0f1c4d;
+  cursor: pointer;
+}
+
+#likes {
+  width: 50px;
+  border-radius: 20px;
+}
+
+#likes:hover {
+  color: #fb7185;
+  cursor: pointer;
+  background-color: #271b26;
 }
