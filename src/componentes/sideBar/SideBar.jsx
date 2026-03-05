@@ -35,7 +35,7 @@ export const SideBar = () => {
           <p>Messages</p>
         </div>
         <Link
-          to="/profile?id=1"
+          to="/flazarte"
           className={`sidebar-item ${location === "/profile" && "active"}`}
         >
           <ion-icon

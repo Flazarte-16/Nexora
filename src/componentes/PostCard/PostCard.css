@@ -66,31 +66,41 @@
 .post-card-content {
   color: white;
   border-bottom: 1px solid #1e293b;
+  padding: 10px 0;
 }
 
 .post-card-actions {
   display: flex;
-  gap: 50px;
+  align-items: center;
+  gap: 10px;
+  height: 20px;
 }
 
-#coments {
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
   width: 50px;
-  border-radius: 20px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-#coments:hover {
+.action-btn.comments:hover {
   color: #3b5bff;
   background-color: #0f1c4d;
-  cursor: pointer;
 }
 
-#likes {
-  width: 50px;
-  border-radius: 20px;
+.action-btn.comments:hover ion-icon {
+  color: #3b5bff;
 }
 
-#likes:hover {
-  color: #fb7185;
-  cursor: pointer;
+.action-btn.likes:hover {
   background-color: #271b26;
+}
+
+.action-btn.likes:hover ion-icon {
+  color: #fb7185;
 }

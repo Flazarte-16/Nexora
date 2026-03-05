@@ -1,10 +1,12 @@
 import "./Profile.css";
 import { useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
+import { useParams } from "wouter";
 
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
+  const params = useParams();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -19,7 +21,9 @@ export const Profile = () => {
 
     const getUserInfo = async () => {
       try {
-        const response = await fetch("http://localhost:3000/v1/users/1");
+        const response = await fetch(
+          `http://localhost:3000/v1/users/${params.username}`,
+        );
         const data = await response.json();
         setUserInfo(data.user);
       } catch (error) {
@@ -44,25 +48,24 @@ export const Profile = () => {
 
         <article className="user-details">
           <img
-            src={userInfo.image_url}
+            src={userInfo?.image_url}
             alt="Foto de perfil"
             className="user-img"
           />
           <h2 className="user-name">{userInfo.full_name}</h2>
           <h3 className="user-username">{userInfo.username}</h3>
           <p>{userInfo?.description}</p>
-          <span className="user-link">joined: 24/2/2026</span>
           <article className="profile-sections">
-            <span>Posts</span>
-            <span>Media</span>
-            <span>Likes</span>
+            <span>Posts: 0</span>
+            <span>Media: 0</span>
+            <span>Likes: 0</span>
           </article>
         </article>
-        <article>
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </article>
+      </section>
+      <section className="posts-container--profile">
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
       </section>
     </main>
   );

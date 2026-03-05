@@ -7,18 +7,18 @@
   padding-left: 15.625rem;
   padding-right: 22rem;
   color: #fff;
-  width: 100%;
   position: relative;
   gap: 20px;
+  justify-self: center;
 }
 
 .user-info {
   display: flex;
   flex-direction: column;
-  width: 800px;
   position: relative;
   background-color: #14182b;
   border-radius: 0 0 1.25rem 1.25rem;
+  width: 800px;
 }
 
 .banner {
@@ -31,10 +31,11 @@
 
 .profile-sections {
   display: flex;
-  justify-content: center;
-  gap: 300px;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 25px;
   color: #94a3b3;
+  width: 100%;
 }
 
 .user-details {
@@ -113,4 +114,13 @@
   padding: 15px 20px;
   width: 100%;
   border-bottom: 1px solid #1e293b;
+}
+
+.posts-container--profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  gap: 20px;
 }
