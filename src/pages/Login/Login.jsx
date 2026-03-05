@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../assets/nexora.png";
 import "./Login.css";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -9,6 +10,10 @@ export const Login = () => {
     emailOrUsername: "",
     password: "",
   });
+  const context = useContext(AuthContext);
+  const { login } = context;
+
+  const [_, navigate] = useLocation();
 
   const handleInputForm = (e) => {
     setInputForm((prev) => ({
@@ -19,13 +24,9 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/v1/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(inputForm),
-    });
-    const data = await response.json();
-    alert(data.message);
+    const response = await login(inputForm);
+    if (response.type === "OK") navigate("/home");
+    alert(response.message);
   };
 
   return (

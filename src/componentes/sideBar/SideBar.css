@@ -27,7 +27,6 @@
 .sidebar-container p {
   opacity: 0;
   width: 0;
-  display: none;
   overflow: hidden;
   white-space: nowrap;
   transition:
@@ -38,7 +37,7 @@
 .sidebar-container:hover p,
 .sidebar-container:hover .relocation {
   opacity: 1;
-  display: flex;
+
   width: auto;
 }
 
@@ -139,20 +138,21 @@
 
 .profile p {
   opacity: 0;
-  width: 0;
+  max-width: 0;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   color: #e2e8f0;
   font-size: 0.9rem;
   font-weight: 500;
   transition:
     opacity 0.2s ease,
-    width 0.2s ease;
+    max-width 0.3s ease;
 }
 
 .sidebar-container:hover .profile p {
   opacity: 1;
-  width: auto;
+  max-width: 120px;
 }
 
 .sidebar-container.sidebar-container--right {

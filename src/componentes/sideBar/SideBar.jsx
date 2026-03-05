@@ -2,9 +2,15 @@ import { Followers } from "../Followers/Followers";
 import { Link, useLocation } from "wouter";
 import "./SideBar.css";
 import "ionicons";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export const SideBar = () => {
   const [location] = useLocation();
+  const context = useContext(AuthContext);
+  const { user } = context;
+
+  console.log(user);
 
   return (
     <div className="sidebar-container">
@@ -35,8 +41,8 @@ export const SideBar = () => {
           <p>Messages</p>
         </div>
         <Link
-          to="/flazarte"
-          className={`sidebar-item ${location === "/profile" && "active"}`}
+          to={`/${user.username}`}
+          className={`sidebar-item ${location === `/${user.username}` && "active"}`}
         >
           <ion-icon
             className="sidebar-icon"
@@ -46,8 +52,8 @@ export const SideBar = () => {
         </Link>
       </div>
       <div className="profile">
-        <img src="marcus.png" alt="your profile image" />
-        <p>Marcus Aurelius</p>
+        <img src={user.image_url} alt="your profile image" />
+        <p>{user.full_name}</p>
       </div>
     </div>
   );
