@@ -5,6 +5,8 @@ import { Link } from "wouter";
 export const Register = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [inputForm, setInputForm] = useState({
+    first_name: "",
+    last_name: "",
     username: "",
     email: "",
     password: "",
@@ -48,6 +50,26 @@ export const Register = () => {
         </section>
         <section className="auth-right-center">
           <form className="auth-form" onSubmit={handleSubmit}>
+            <section className="full-name-container">
+              <article className="input-container">
+                <label>First name</label>
+                <input
+                  type="text"
+                  placeholder="example"
+                  name="first_name"
+                  onChange={handleInputForm}
+                />
+              </article>
+              <article className="input-container">
+                <label>Last name</label>
+                <input
+                  type="text"
+                  placeholder="example"
+                  name="last_name"
+                  onChange={handleInputForm}
+                />
+              </article>
+            </section>
             <article className="input-container">
               <label>Username</label>
               <input
@@ -103,9 +125,6 @@ export const Register = () => {
               Log in
             </Link>
           </p>
-        </section>
-        <section className="auth-right-footer">
-          <p>&copy;{new Date().getFullYear()} Nexora Inc</p>
         </section>
       </section>
     </main>

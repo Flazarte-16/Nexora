@@ -193,3 +193,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.full-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}

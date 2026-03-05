@@ -4,6 +4,8 @@ import { PostCard } from "../../componentes/PostCard/PostCard";
 
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -14,8 +16,21 @@ export const Profile = () => {
         console.error(error);
       }
     };
+
+    const getUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/v1/users/1");
+        const data = await response.json();
+        setUserInfo(data.user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getPosts();
+    getUserInfo();
   }, []);
+
   return (
     <main className="main main--profile">
       <section className="user-info">
@@ -29,22 +44,14 @@ export const Profile = () => {
 
         <article className="user-details">
           <img
-            src="https://media.licdn.com/dms/image/v2/D4D03AQFVhpA9Yxu8Og/profile-displayphoto-shrink_100_100/B4DZUj6bGcGkAU-/0/1740064273451?e=1773273600&v=beta&t=5hyUnpPAaSTaZUbN3LiReXz8q5EIv7LfsixbxB-xE90"
+            src={userInfo.image_url}
             alt="Foto de perfil"
             className="user-img"
           />
-          <h2 className="user-name">Constantino Pasquali</h2>
-          <h3 className="user-username">@cpasquali</h3>
-          <p>
-            Programmer in training with a strong interest in web development and
-            modern technologies. Focused on learning and continuously improving
-            coding skills.
-          </p>
-          <span className="user-link">
-            <ion-icon name="link-outline"></ion-icon>
-            <a href="https://www.instagram.com/coni.pasquali/">Instagram</a>
-            <span>joined: 24/2/2026</span>
-          </span>
+          <h2 className="user-name">{userInfo.full_name}</h2>
+          <h3 className="user-username">{userInfo.username}</h3>
+          <p>{userInfo?.description}</p>
+          <span className="user-link">joined: 24/2/2026</span>
           <article className="profile-sections">
             <span>Posts</span>
             <span>Media</span>

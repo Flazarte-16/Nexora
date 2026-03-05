@@ -6,6 +6,7 @@ import { PostCard } from "../../componentes/PostCard/PostCard";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -18,10 +19,11 @@ export const Home = () => {
     };
     getPosts();
   }, []);
+
   return (
     <main className="main main--home">
       <CreatePost />
-      <section>
+      <section className="posts-container">
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
