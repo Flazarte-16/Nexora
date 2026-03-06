@@ -1,0 +1,85 @@
+.user-img.skeleton,
+.post-image.skeleton,
+.banner.skeleton,
+.user-data.skeleton,
+.user-name.skeleton,
+.user-username.skeleton,
+.user-description.skeleton,
+.post-card-content.skeleton,
+.action-btn.skeleton {
+  background: linear-gradient(90deg, #2a2f45 25%, #3a4060 50%, #2a2f45 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border: 1px solid #2f3557;
+}
+
+.post-card.skeleton {
+  background-color: #14182b;
+  border: 1px solid #1e293b;
+}
+
+.user-name.skeleton {
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.post-image.skeleton {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-header-info.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-card-content.skeleton {
+  width: 250px;
+  border-radius: 10px;
+  height: 20px;
+}
+
+.user-username.skeleton {
+  width: 150px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.user-description.skeleton {
+  width: 250px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.user-img.skeleton {
+  border: 4px solid #101322;
+}
+
+.user-data.skeleton {
+  width: 100px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.action-btn.skeleton {
+  height: 30px;
+  width: 30px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

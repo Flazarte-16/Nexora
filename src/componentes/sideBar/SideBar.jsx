@@ -53,7 +53,7 @@ export const SideBar = () => {
       </div>
       <div className="profile">
         <img src={user.image_url} alt="your profile image" />
-        <p>{user.full_name}</p>
+        <h4 className="profile-name">{user.full_name}</h4>
       </div>
     </div>
   );

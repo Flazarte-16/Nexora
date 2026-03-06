@@ -27,6 +27,7 @@
 .sidebar-container p {
   opacity: 0;
   width: 0;
+  display: none;
   overflow: hidden;
   white-space: nowrap;
   transition:
@@ -34,10 +35,29 @@
     width 0.2s ease;
 }
 
+.profile-name {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    opacity 0.2s ease,
+    width 0.2s ease;
+  text-overflow: ellipsis;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .sidebar-container:hover p,
 .sidebar-container:hover .relocation {
   opacity: 1;
+  width: auto;
+  display: flex;
+}
 
+.sidebar-container:hover .profile-name {
+  opacity: 1;
   width: auto;
 }
 

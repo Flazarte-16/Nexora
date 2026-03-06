@@ -7,7 +7,7 @@ export const PostCard = ({ post }) => {
       <section className="card-header">
         <img src={post.user.image_url} alt={`foto de ${post.username}`} />
         <section className="card-header-info">
-          <Link href={`/${post.user.username}`}>
+          <Link className="relocation-user" href={`/${post.user.username}`}>
             <h4>{post.user.full_name}</h4>
           </Link>
           <p>@{post.user.username}</p>

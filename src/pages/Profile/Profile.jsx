@@ -2,11 +2,13 @@ import "./Profile.css";
 import { useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
 import { useParams } from "wouter";
+import { ProfileSkeleton } from "../../componentes/Skeletons/Skeletons";
 
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const params = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -20,6 +22,7 @@ export const Profile = () => {
     };
 
     const getUserInfo = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(
           `http://localhost:3000/v1/users/${params.username}`,
@@ -28,12 +31,16 @@ export const Profile = () => {
         setUserInfo(data.user);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getPosts();
     getUserInfo();
   }, []);
+
+  if (isLoading) return <ProfileSkeleton />;
 
   return (
     <main className="main main--profile">
