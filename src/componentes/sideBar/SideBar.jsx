@@ -6,11 +6,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 export const SideBar = () => {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const context = useContext(AuthContext);
-  const { user } = context;
+  const { user, logout } = context;
 
-  console.log(user);
+  const handleLogoutClick = () => {
+    const response = logout();
+    if (response.type === "OK") {
+      navigate("/");
+      alert(response.message);
+    }
+  };
 
   return (
     <div className="sidebar-container">
@@ -50,7 +56,12 @@ export const SideBar = () => {
           ></ion-icon>
           <p>Profile</p>
         </Link>
+        <div className="sidebar-item" onClick={handleLogoutClick}>
+          <ion-icon className="sidebar-icon" name="log-out-outline"></ion-icon>
+          <p>Log out</p>
+        </div>
       </div>
+
       <div className="profile">
         <img src={user.image_url} alt="your profile image" />
         <h4 className="profile-name">{user.full_name}</h4>

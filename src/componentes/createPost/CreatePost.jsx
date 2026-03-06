@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./CreatePost.css";
+import { AuthContext } from "../../context/AuthContext";
 
 export const CreatePost = () => {
   const [postContent, setPostContent] = useState("");
+  const context = useContext(AuthContext);
+  const { user } = context;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +30,7 @@ export const CreatePost = () => {
   return (
     <form className="input-container-create" onSubmit={handleSubmit}>
       <section className="input-text">
-        <img src="marcus.png" alt="user image" />
+        <img src={user.image_url} alt="user image" />
         <input
           type="text"
           placeholder="What's happening?"

@@ -5,12 +5,17 @@ export const PostCard = ({ post }) => {
   return (
     <article className="post-card">
       <section className="card-header">
-        <img src={post.user.image_url} alt={`foto de ${post.username}`} />
-        <section className="card-header-info">
-          <Link className="relocation-user" href={`/${post.user.username}`}>
-            <h4>{post.user.full_name}</h4>
-          </Link>
-          <p>@{post.user.username}</p>
+        <section className="card-header-left">
+          <img src={post.user.image_url} alt={`foto de ${post.username}`} />
+          <section className="card-header-info">
+            <Link className="relocation-user" href={`/${post.user.username}`}>
+              <h4>{post.user.full_name}</h4>
+            </Link>
+            <p>@{post.user.username}</p>
+          </section>
+        </section>
+        <section className="card-header-right">
+          <p>{post.time_ago}</p>
         </section>
       </section>
       <p className="post-card-content">{post.content}</p>

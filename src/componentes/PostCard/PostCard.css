@@ -28,9 +28,24 @@
 
 .card-header {
   display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1.15rem;
+}
+
+.card-header-left {
+  display: flex;
   align-items: center;
   justify-content: start;
   gap: 1.15rem;
+}
+
+.card-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1.15rem;
+  color: #94a3b3;
 }
 
 .card-header img {

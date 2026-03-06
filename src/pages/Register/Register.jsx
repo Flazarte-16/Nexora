@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/nexora.png";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export const Register = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -12,6 +12,7 @@ export const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const [_, navigate] = useLocation();
 
   const handleInputForm = (e) => {
     setInputForm((prev) => ({
@@ -29,6 +30,9 @@ export const Register = () => {
     });
     const data = await response.json();
     alert(data.message);
+    if (data.type === "OK") {
+      navigate("/");
+    }
   };
 
   return (

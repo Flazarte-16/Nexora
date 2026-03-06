@@ -13,7 +13,9 @@ export const Profile = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/v1/posts");
+        const response = await fetch(
+          `http://localhost:3000/v1/posts/user/${params.username}`,
+        );
         const data = await response.json();
         setPosts(data.posts);
       } catch (error) {
@@ -38,7 +40,7 @@ export const Profile = () => {
 
     getPosts();
     getUserInfo();
-  }, []);
+  }, [params.username]);
 
   if (isLoading) return <ProfileSkeleton />;
 
@@ -63,14 +65,14 @@ export const Profile = () => {
           <h3 className="user-username">{userInfo.username}</h3>
           <p>{userInfo?.description}</p>
           <article className="profile-sections">
-            <span>Posts: 0</span>
-            <span>Media: 0</span>
-            <span>Likes: 0</span>
+            <span>Seguidores: 0</span>
+            <span>Siguiendo: 0</span>
+            <span>Posts: {posts.length}</span>
           </article>
         </article>
       </section>
       <section className="posts-container--profile">
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </section>

@@ -31,7 +31,8 @@
 
 .profile-sections {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 1.15rem;
   align-items: center;
   padding-top: 25px;
   color: #94a3b3;
