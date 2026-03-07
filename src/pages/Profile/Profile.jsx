@@ -49,7 +49,7 @@ export const Profile = () => {
       <section className="user-info">
         <section
           className="banner"
-          style={{ backgroundImage: `url(${userInfo.banner_image_url})` }}
+          style={{ backgroundImage: `url(${userInfo?.banner_image_url})` }}
         ></section>
 
         <article className="user-details">

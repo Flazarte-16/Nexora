@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import "./PostCard.css";
 import { Link } from "wouter";
 
@@ -8,7 +9,7 @@ export const PostCard = ({ post }) => {
         <section className="card-header-left">
           <img src={post.user.image_url} alt={`foto de ${post.username}`} />
           <section className="card-header-info">
-            <Link className="relocation-user" href={`/${post.user.username}`}>
+            <Link className="relocation-user" to={`/${post.user.username}`}>
               <h4>{post.user.full_name}</h4>
             </Link>
             <p>@{post.user.username}</p>
@@ -18,7 +19,17 @@ export const PostCard = ({ post }) => {
           <p>{post.time_ago}</p>
         </section>
       </section>
-      <p className="post-card-content">{post.content}</p>
+      <p className="post-card-content">
+        {post.content.split(" ").map((word) =>
+          word.startsWith("@") ? (
+            <Link className="relocation-user mention" to={`/${word.slice(1)}`}>
+              {" " + word}
+            </Link>
+          ) : (
+            " " + word
+          ),
+        )}
+      </p>
       <article className="post-card-actions">
         <button className="action-btn comments">
           <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>

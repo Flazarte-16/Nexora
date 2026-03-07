@@ -48,12 +48,15 @@
 .profile-info p {
   color: #94a3b3;
   letter-spacing: 0.6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profiles img {
   width: 50px;
   height: auto;
-  border-radius: 15px;
+  border-radius: 50%;
 }
 
 .Follow-button {

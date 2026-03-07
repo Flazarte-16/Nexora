@@ -48,17 +48,6 @@
   border-bottom: 1px solid #1e293b;
   border-left: 1px solid #1e293b;
   border-right: 1px solid #1e293b;
-  background-image:
-    radial-gradient(
-      300px circle at -10% 110%,
-      rgba(77, 100, 216, 0.25),
-      transparent 60%
-    ),
-    radial-gradient(
-      300px circle at 110% -10%,
-      rgba(77, 100, 216, 0.25),
-      transparent 60%
-    );
 
   border-radius: 0 0 1.25rem 1.25rem;
 }

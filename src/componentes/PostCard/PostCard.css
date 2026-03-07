@@ -122,3 +122,7 @@
 .action-btn.likes:hover ion-icon {
   color: #fb7185;
 }
+
+.relocation-user.mention {
+  color: #1334d8;
+}
