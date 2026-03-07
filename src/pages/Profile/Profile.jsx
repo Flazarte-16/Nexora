@@ -49,10 +49,7 @@ export const Profile = () => {
       <section className="user-info">
         <section
           className="banner"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1542831371-29b0f74f9713?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZ3JhbWFjaW9ufGVufDB8fDB8fHww)",
-          }}
+          style={{ backgroundImage: `url(${userInfo.banner_image_url})` }}
         ></section>
 
         <article className="user-details">
@@ -65,14 +62,14 @@ export const Profile = () => {
           <h3 className="user-username">{userInfo.username}</h3>
           <p>{userInfo?.description}</p>
           <article className="profile-sections">
-            <span>Seguidores: 0</span>
-            <span>Siguiendo: 0</span>
+            <span>Followers: 0</span>
+            <span>Following: 0</span>
             <span>Posts: {posts.length}</span>
           </article>
         </article>
       </section>
       <section className="posts-container--profile">
-        {posts?.map((post) => (
+        {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </section>
