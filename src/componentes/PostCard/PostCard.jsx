@@ -1,8 +1,16 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import "./PostCard.css";
 import { Link } from "wouter";
 
 export const PostCard = ({ post }) => {
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/v1/comments/${post.id}`)
+      .then((res) => res.json())
+      .then((data) => setComments(data));
+  }, [post.id]);
+
   return (
     <article className="post-card">
       <section className="card-header">
@@ -38,6 +46,13 @@ export const PostCard = ({ post }) => {
           <ion-icon className="sidebar-icon" name="heart"></ion-icon>
         </button>
       </article>
+      <section>
+        {comments.map((comment) => (
+          <div key={comment.id}>
+            <p>{comment.content}</p>
+          </div>
+        ))}
+      </section>
     </article>
   );
 };
