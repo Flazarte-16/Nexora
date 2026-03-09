@@ -45,7 +45,7 @@
   text-overflow: ellipsis;
 }
 
-.profile-info p {
+.profile-username {
   color: #94a3b3;
   letter-spacing: 0.6px;
   white-space: nowrap;

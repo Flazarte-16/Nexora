@@ -30,7 +30,7 @@ export const Followers = () => {
               <Link className="relocation-user" to={`/${user.username}`}>
                 <h4>{user.full_name}</h4>
               </Link>
-              <p>{user.username}</p>
+              <p className="profile-username">{user.username}</p>
             </section>
             <button className="Follow-button">Follow</button>
           </div>

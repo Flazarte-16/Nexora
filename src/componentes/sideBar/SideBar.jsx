@@ -2,13 +2,11 @@ import { Followers } from "../Followers/Followers";
 import { Link, useLocation } from "wouter";
 import "./SideBar.css";
 import "ionicons";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 
 export const SideBar = () => {
   const [location, navigate] = useLocation();
-  const context = useContext(AuthContext);
-  const { user, logout } = context;
+  const { user, logout } = useAuth();
 
   const handleLogoutClick = () => {
     const response = logout();
@@ -48,7 +46,9 @@ export const SideBar = () => {
         </div>
         <Link
           to={`/${user.username}`}
-          className={`sidebar-item ${location === `/${user.username}` && "active"}`}
+          className={`sidebar-item ${
+            location === `/${user.username}` && "active"
+          }`}
         >
           <ion-icon
             className="sidebar-icon"

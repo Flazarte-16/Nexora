@@ -4,26 +4,10 @@ import "./Home.css";
 import "ionicons";
 import { PostCard } from "../../componentes/PostCard/PostCard";
 import { PostCardSkeleton } from "../../componentes/Skeletons/Skeletons";
+import { usePost } from "../../hooks/usePost";
 
 export const Home = () => {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("http://localhost:3000/v1/posts");
-        const data = await response.json();
-        setPosts(data.posts);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getPosts();
-  }, []);
+  const { posts, isLoading } = usePost();
 
   return (
     <main className="main main--home">

@@ -10,9 +10,7 @@
   align-items: center;
   border-right: 1px solid #1e293b;
   background-color: #101322;
-  transition:
-    width 0.3s ease,
-    background-color 0.3s ease;
+  transition: width 0.3s ease, background-color 0.3s ease;
   overflow: hidden;
   padding-top: 1.5rem;
 }
@@ -26,39 +24,30 @@
 
 .sidebar-container p {
   opacity: 0;
-  width: 0;
-  display: none;
+  max-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition:
-    opacity 0.2s ease,
-    width 0.2s ease;
+  text-overflow: ellipsis;
+  transition: opacity 0.2s ease, max-width 0.3s ease;
 }
 
 .profile-name {
   opacity: 0;
-  width: 0;
+  max-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition:
-    opacity 0.2s ease,
-    width 0.2s ease;
   text-overflow: ellipsis;
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
+  transition: opacity 0.2s ease, max-width 0.3s ease;
 }
 
 .sidebar-container:hover p,
-.sidebar-container:hover .relocation {
-  opacity: 1;
-  width: auto;
-  display: flex;
-}
-
+.sidebar-container:hover .relocation,
 .sidebar-container:hover .profile-name {
   opacity: 1;
-  width: auto;
+  max-width: 180px;
 }
 
 .sidebar-item {
@@ -71,10 +60,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 0.75rem;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
   width: 100%;
   text-decoration: none;
 }
@@ -157,6 +143,8 @@
 }
 
 .profile p {
+  flex: 1;
+  min-width: 0;
   opacity: 0;
   max-width: 0;
   overflow: hidden;
@@ -165,14 +153,12 @@
   color: #e2e8f0;
   font-size: 0.9rem;
   font-weight: 500;
-  transition:
-    opacity 0.2s ease,
-    max-width 0.3s ease;
+  transition: opacity 0.2s ease, max-width 0.3s ease;
 }
 
 .sidebar-container:hover .profile p {
   opacity: 1;
-  max-width: 120px;
+  max-width: 140px;
 }
 
 .sidebar-container.sidebar-container--right {
@@ -188,9 +174,9 @@
 }
 
 .sidebar-container.sidebar-container--right p {
-  overflow: visible;
+  overflow: hidden;
   opacity: 1;
-  display: flex;
+  max-width: 100%;
 }
 
 .sidebar-container.sidebar-container--right:hover {
@@ -210,9 +196,7 @@
   font-size: 1rem;
   letter-spacing: 0.5px;
   color: white;
-  transition:
-    border 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 .sidebar-container.sidebar-container--right input::placeholder {

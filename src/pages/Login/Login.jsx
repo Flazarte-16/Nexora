@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import logo from "../../assets/nexora.png";
 import "./Login.css";
 import { Link, useLocation } from "wouter";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -10,8 +10,7 @@ export const Login = () => {
     emailOrUsername: "",
     password: "",
   });
-  const context = useContext(AuthContext);
-  const { login } = context;
+  const { login } = useAuth();
 
   const [_, navigate] = useLocation();
 

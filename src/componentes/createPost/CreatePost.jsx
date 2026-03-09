@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./CreatePost.css";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
+import { usePost } from "../../hooks/usePost";
 
 export const CreatePost = () => {
   const [postContent, setPostContent] = useState("");
-  const context = useContext(AuthContext);
-  const { user } = context;
+  const { user } = useAuth();
+  const { setPosts } = usePost();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,11 @@ export const CreatePost = () => {
 
       const data = await response.json();
 
-      alert(data.message);
+      setPosts((prevPosts) => [
+        { ...data.newPost, user: { ...user } },
+        ...prevPosts,
+      ]);
+      setPostContent("");
     } catch (e) {
       console.log(e.message);
     }
@@ -34,6 +39,7 @@ export const CreatePost = () => {
         <input
           type="text"
           placeholder="What's happening?"
+          value={postContent}
           onChange={(e) => setPostContent(e.target.value)}
         />
       </section>
