@@ -34,6 +34,8 @@ export const PostCard = ({ post }) => {
             <Link className="relocation-user mention" to={`/${word.slice(1)}`}>
               {" " + word}
             </Link>
+          ) : word.startsWith("#") ? (
+            <p className="hashtag">{" " + word}</p>
           ) : (
             " " + word
           ),

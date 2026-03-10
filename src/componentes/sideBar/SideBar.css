@@ -10,7 +10,9 @@
   align-items: center;
   border-right: 1px solid #1e293b;
   background-color: #101322;
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
   overflow: hidden;
   padding-top: 1.5rem;
 }
@@ -28,7 +30,9 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  transition: opacity 0.2s ease, max-width 0.3s ease;
+  transition:
+    opacity 0.2s ease,
+    max-width 0.3s ease;
 }
 
 .profile-name {
@@ -40,7 +44,9 @@
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: opacity 0.2s ease, max-width 0.3s ease;
+  transition:
+    opacity 0.2s ease,
+    max-width 0.3s ease;
 }
 
 .sidebar-container:hover p,
@@ -60,7 +66,10 @@
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 0.75rem;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
   width: 100%;
   text-decoration: none;
 }
@@ -153,7 +162,9 @@
   color: #e2e8f0;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: opacity 0.2s ease, max-width 0.3s ease;
+  transition:
+    opacity 0.2s ease,
+    max-width 0.3s ease;
 }
 
 .sidebar-container:hover .profile p {
@@ -196,7 +207,9 @@
   font-size: 1rem;
   letter-spacing: 0.5px;
   color: white;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .sidebar-container.sidebar-container--right input::placeholder {
@@ -212,4 +225,47 @@
 
 .sidebar-item.active:hover {
   background-color: #0f1c4d;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  z-index: 999;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: start;
+  border: 1px solid #1e293b;
+  background-color: #101322;
+  width: 90%;
+  z-index: 999;
+  border-radius: 10px;
+}
+
+.sidebar-container.sidebar-container--right.active::before {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.499);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  z-index: 1;
+}
+
+.users-list.active {
+  display: flex;
+}
+
+.users-list.disabled {
+  display: none;
 }

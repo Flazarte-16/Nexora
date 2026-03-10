@@ -26,6 +26,11 @@
     transform 0.2s ease;
 }
 
+.hashtag {
+  display: inline;
+  color: #94a3b3;
+}
+
 .card-header {
   display: flex;
   align-items: start;

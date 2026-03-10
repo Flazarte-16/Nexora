@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import "./SideBar.css";
 import "ionicons";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 export const SideBar = () => {
   const [location, navigate] = useLocation();
@@ -71,9 +72,71 @@ export const SideBar = () => {
 };
 
 export const RightSidebar = () => {
+  const [username, setUsername] = useState("");
+  const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
+
+  const handleUserSearch = (e) => {
+    setUsername(e.target.value);
+  };
+
+  useEffect(() => {
+    if (!username) {
+      setUsers([]);
+      return;
+    }
+
+    const getData = setTimeout(async () => {
+      const response = await fetch(
+        `http://localhost:3000/v1/users?username=${username}`,
+      );
+
+      const data = await response.json();
+      setMessage(data.message);
+      setUsers(data.user);
+    }, 400);
+
+    return () => clearTimeout(getData);
+  }, [username]);
+
+  const isListActive = users.length > 0 ? "active" : "disabled";
+
+  const handleRelocation = () => setUsername("");
+
   return (
-    <section className="sidebar-container sidebar-container--right">
-      <input type="text" placeholder="search..." name="search" />
+    <section
+      className={`sidebar-container sidebar-container--right ${isListActive}`}
+    >
+      <section className="search-container">
+        <input
+          type="text"
+          placeholder="search..."
+          onChange={handleUserSearch}
+          value={username}
+        />
+        <section className={`users-list ${isListActive}`}>
+          {users.length > 0 ? (
+            users.map((u) => (
+              <div className="profiles">
+                <img src={u.image_url} alt={`${u.username} image`} />
+                <section className="profile-info">
+                  <Link
+                    onClick={handleRelocation}
+                    className="relocation-user"
+                    to={`/${u.username}`}
+                  >
+                    <h4>{u.full_name}</h4>
+                  </Link>
+                  <p className="profile-username">{u.username}</p>
+                </section>
+                <button className="Follow-button">Follow</button>
+              </div>
+            ))
+          ) : (
+            <p>{message}</p>
+          )}
+        </section>
+      </section>
       <Followers />
     </section>
   );
