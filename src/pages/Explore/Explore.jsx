@@ -33,6 +33,14 @@ export const Explore = () => {
         name="username"
         onChange={handleSearch}
       />
+      {username && (
+        <section className="search-info">
+          <h2 className="title l">
+            Search results for <span>"{username}"</span>
+          </h2>
+          <p className="subtitle">Showing {users.length} results</p>
+        </section>
+      )}
       <section className="users-container">
         {users &&
           users.length > 0 &&
@@ -48,6 +56,7 @@ export const Explore = () => {
                   <h4>{user.full_name}</h4>
                 </Link>
                 <p className="profile-username">{user.username}</p>
+                <p className="profile-description">{user.description}</p>
               </section>
               <button className="Follow-button">Follow</button>
             </div>

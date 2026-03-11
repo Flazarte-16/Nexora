@@ -7,10 +7,7 @@
   align-items: center;
   gap: 1.25rem;
   top: 130px;
-  border-radius: 1.25rem;
   width: 21.875rem;
-  border: 1px solid #1e293b;
-  position: absolute;
 }
 
 .profiles-container h2 {

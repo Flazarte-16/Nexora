@@ -31,6 +31,10 @@
   line-height: 1.2;
 }
 
+.title.l {
+  font-size: 1.55rem;
+}
+
 .title.xl {
   font-size: 2.25rem;
   font-weight: 600;

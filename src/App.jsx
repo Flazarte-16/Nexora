@@ -10,7 +10,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { PostContextProvider } from "./context/PostContext";
 
 function App() {
-  const location = useLocation();
+  const [location] = useLocation();
 
   return (
     <div className="app">
@@ -23,10 +23,10 @@ function App() {
             <Route path="/explore" component={Explore} />
             <Route path="/:username" component={Profile} />
           </Switch>
-          {location[0] !== "/" && location[0] !== "/register" && <SideBar />}
-          {location[0] !== "/" && location[0] !== "/register" && (
-            <RightSidebar />
-          )}
+          {location !== "/" && location !== "/register" && <SideBar />}
+          {location !== "/" &&
+            location !== "/register" &&
+            location !== "/explore" && <RightSidebar />}
         </AuthContextProvider>
       </PostContextProvider>
     </div>
