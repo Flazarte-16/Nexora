@@ -30,10 +30,13 @@ export const SideBar = () => {
           <ion-icon className="sidebar-icon" name="home-sharp"></ion-icon>
           <p>Home</p>
         </Link>
-        <div className="sidebar-item">
+        <Link
+          to="/explore"
+          className={`sidebar-item ${location === "/explore" && "active"}`}
+        >
           <ion-icon className="sidebar-icon" name="compass-sharp"></ion-icon>
           <p>Explore</p>
-        </div>
+        </Link>
         <div className="sidebar-item">
           <ion-icon
             className="sidebar-icon"
@@ -75,6 +78,7 @@ export const RightSidebar = () => {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
+  const [location] = useLocation();
 
   const handleUserSearch = (e) => {
     setUsername(e.target.value);
@@ -108,12 +112,14 @@ export const RightSidebar = () => {
       className={`sidebar-container sidebar-container--right ${isListActive}`}
     >
       <section className="search-container">
-        <input
-          type="text"
-          placeholder="search..."
-          onChange={handleUserSearch}
-          value={username}
-        />
+        {location !== "/explore" && (
+          <input
+            type="text"
+            placeholder="search..."
+            onChange={handleUserSearch}
+            value={username}
+          />
+        )}
         <section className={`users-list ${isListActive}`}>
           {users.length > 0 ? (
             users.map((u) => (

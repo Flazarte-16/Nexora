@@ -24,7 +24,7 @@ export const Followers = () => {
       {users &&
         users.length > 0 &&
         users.map((user) => (
-          <div className="profiles">
+          <div className="profiles" key={user.id}>
             <img src={user.image_url} alt={`${user.username} image`} />
             <section className="profile-info">
               <Link className="relocation-user" to={`/${user.username}`}>
