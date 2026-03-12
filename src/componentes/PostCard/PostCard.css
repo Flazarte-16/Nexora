@@ -8,6 +8,7 @@
   border: 1px solid #1e293b;
   border-radius: 1.25rem;
   width: 100%;
+
   background-image:
     radial-gradient(
       300px circle at -10% 110%,
@@ -26,30 +27,20 @@
     transform 0.2s ease;
 }
 
-.hashtag {
-  display: inline;
-  color: #94a3b3;
-}
-
 .card-header {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 1.15rem;
+  gap: 1rem;
 }
 
 .card-header-left {
   display: flex;
   align-items: center;
-  justify-content: start;
-  gap: 1.15rem;
+  gap: 1rem;
 }
 
 .card-header-right {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 1.15rem;
   color: #94a3b3;
 }
 
@@ -62,13 +53,7 @@
 
 .card-header-info {
   display: flex;
-  align-items: start;
-  justify-content: center;
   flex-direction: column;
-}
-
-.relocation-user {
-  text-decoration: none;
 }
 
 .card-header-info h4 {
@@ -76,27 +61,41 @@
   font-weight: 400;
   letter-spacing: 0.8px;
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card-header-info p {
   color: #94a3b3;
-  letter-spacing: 0.6px;
+  font-size: 0.9rem;
+}
+
+.relocation-user {
+  text-decoration: none;
+}
+
+.relocation-user.mention {
+  color: #3b5bff;
+}
+
+.relocation-user.mention:hover {
+  text-decoration: underline;
 }
 
 .post-card-content {
   color: white;
   border-bottom: 1px solid #1e293b;
-  padding: 20px 0;
+  padding: 1rem 0;
+  line-height: 1.5;
+}
+
+.hashtag {
+  display: inline;
+  color: #94a3b3;
 }
 
 .post-card-actions {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 20px;
 }
 
 .action-btn {
@@ -106,20 +105,21 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  gap: 10px;
+  gap: 6px;
   color: #fff;
+  transition: all 0.15s ease;
+}
+
+.action-btn:active {
+  transform: scale(0.9);
 }
 
 .action-btn.comments:hover {
   color: #3b5bff;
   background-color: #0f1c4d;
-}
-
-.action-btn.comments:hover ion-icon {
-  color: #3b5bff;
 }
 
 .action-btn.likes:hover {
@@ -130,39 +130,13 @@
   color: #fb7185;
 }
 
-.relocation-user.mention {
-  color: #1334d8;
-}
-
-.post-card-comments-hidden {
-  display: none;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 20px;
-}
-
 .post-card-comments {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  gap: 20px;
-  padding-top: 20px;
+  gap: 15px;
+  padding-top: 15px;
   color: #fff;
-}
-
-.comment {
-  display: flex;
-  border-bottom: 1px solid #1e293b;
-  height: 30px;
-  gap: 20px;
-}
-
-.post-card-comments img {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
+  animation: fadeComments 0.2s ease;
 }
 
 .hide {
@@ -171,4 +145,61 @@
 
 .show {
   display: flex;
+}
+
+@keyframes fadeComments {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.comment p {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
+.form-comment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-comment input {
+  flex: 1;
+  padding: 8px 10px;
+  background-color: #0f1324;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.form-comment input:focus {
+  border: 1px solid #3b5bff;
+}
+
+.form-comment button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-comment button ion-icon {
+  color: #3b5bff;
+  font-size: 18px;
 }
