@@ -108,7 +108,7 @@ export const PostCard = ({ post }) => {
                   >
                     <h4>{comment.user.full_name}</h4>
                   </Link>
-                  <p>@{comment.user.username}</p>
+                  <p className="pepe">@{comment.user.username}</p>
                 </section>
               </section>
             </section>
