@@ -35,6 +35,12 @@ export const PostCard = ({ post }) => {
       },
     );
     const data = await response.json();
+
+    if (data.type === "EMPTY_INPUTS") {
+      alert(data.message);
+      return;
+    }
+
     setComments((prev) => [{ ...data.newComment, user: { ...user } }, ...prev]);
     setCommentContent("");
   };
