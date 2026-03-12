@@ -22,6 +22,11 @@ export const CreatePost = () => {
 
       const data = await response.json();
 
+      if (data.type === "EMPTY_INPUTS") {
+        alert(data.message);
+        return;
+      }
+
       setPosts((prevPosts) => [
         { ...data.newPost, user: { ...user } },
         ...prevPosts,

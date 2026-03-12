@@ -12,12 +12,6 @@ export const PostContextProvider = ({ children }) => {
       try {
         const response = await fetch("http://localhost:3000/v1/posts");
         const data = await response.json();
-
-        if (data.type === "EMPTY_INPUTS") {
-          alert(data.message);
-          return;
-        }
-
         setPosts(data.posts);
       } catch (error) {
         console.error(error);
