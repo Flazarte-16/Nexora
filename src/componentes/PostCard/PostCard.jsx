@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./PostCard.css";
 import { Link } from "wouter";
 import { useAuth } from "../../hooks/useAuth";
+import { CommentCard } from "../CommentCard/CommentCard";
 
 export const PostCard = ({ post }) => {
   const [comments, setComments] = useState([]);
@@ -54,14 +55,20 @@ export const PostCard = ({ post }) => {
           <p>{post.time_ago}</p>
         </section>
       </section>
-      <p className="post-card-content">
+      <p className="card-content">
         {post.content.split(" ").map((word) =>
           word.startsWith("@") ? (
-            <Link className="relocation-user mention" to={`/${word.slice(1)}`}>
+            <Link
+              key={word}
+              className="relocation-user mention"
+              to={`/${word.slice(1)}`}
+            >
               {" " + word}
             </Link>
           ) : word.startsWith("#") ? (
-            <p className="hashtag">{" " + word}</p>
+            <span key={word} className="hashtag">
+              {" " + word}
+            </span>
           ) : (
             " " + word
           ),
@@ -94,26 +101,7 @@ export const PostCard = ({ post }) => {
           </button>
         </form>
         {comments.map((comment) => (
-          <div key={comment.id} className="comment">
-            <section className="card-header">
-              <section className="card-header-left">
-                <img
-                  src={comment.user.image_url}
-                  alt={`foto de ${comment.username}`}
-                />
-                <section className="card-header-info">
-                  <Link
-                    className="relocation-user"
-                    to={`/${comment.user.username}`}
-                  >
-                    <h4>{comment.user.full_name}</h4>
-                  </Link>
-                  <p className="pepe">@{comment.user.username}</p>
-                </section>
-              </section>
-            </section>
-            <p>{comment.content}</p>
-          </div>
+          <CommentCard key={comment.id} comment={comment} />
         ))}
       </section>
     </article>

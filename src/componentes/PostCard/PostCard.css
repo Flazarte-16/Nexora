@@ -40,7 +40,7 @@
   gap: 1rem;
 }
 
-.card-header-right {
+.card-header-right p {
   color: #94a3b3;
 }
 
@@ -80,7 +80,7 @@
   text-decoration: underline;
 }
 
-.post-card-content {
+.card-content {
   color: white;
   border-bottom: 1px solid #1e293b;
   padding: 1rem 0;
@@ -135,7 +135,6 @@
   flex-direction: column;
   gap: 15px;
   padding-top: 15px;
-  color: #fff;
   animation: fadeComments 0.2s ease;
 }
 
@@ -156,19 +155,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.comment {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px 0;
-  border-bottom: 1px solid #1e293b;
-}
-
-.comment p {
-  font-size: 0.95rem;
-  color: #e2e8f0;
 }
 
 .form-comment {
