@@ -49,6 +49,7 @@ export const PostCard = ({ post }) => {
       console.log("likes after like:", data);
 
       setLikes(data.likes);
+      alert("Posteo Likeado");
     } catch (error) {
       console.error(error);
     }
