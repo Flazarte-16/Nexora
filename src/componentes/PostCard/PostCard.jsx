@@ -8,7 +8,17 @@ export const PostCard = ({ post }) => {
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [commentContent, setCommentContent] = useState("");
+  const [likes, setLikes] = useState(0);
   const { user } = useAuth();
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch(`http://localhost:3000/v1/likes/${post.id}`);
+      const data = await response.json();
+      setLikes(data.likes);
+    };
+    getData();
+  }, [post.id]);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,6 +30,29 @@ export const PostCard = ({ post }) => {
     };
     getData();
   }, [post.id]);
+
+  const handleLike = async () => {
+    const user_id = user.id;
+
+    try {
+      await fetch("http://localhost:3000/v1/likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id, post_id: post.id }),
+      });
+
+      const res = await fetch(`http://localhost:3000/v1/likes/${post.id}`);
+      const data = await res.json();
+
+      console.log("likes after like:", data);
+
+      setLikes(data.likes);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,8 +121,9 @@ export const PostCard = ({ post }) => {
           <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
           <span>{comments.length}</span>
         </button>
-        <button className="action-btn likes">
+        <button className="action-btn likes" onClick={handleLike}>
           <ion-icon className="sidebar-icon" name="heart"></ion-icon>
+          <span>{likes}</span>
         </button>
       </article>
       <section
