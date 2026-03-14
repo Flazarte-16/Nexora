@@ -1,14 +1,17 @@
 import "./Profile.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
 import { useParams } from "wouter";
 import { ProfileSkeleton } from "../../componentes/Skeletons/Skeletons";
+import { UserFollowingContext } from "../../context/UserFollowingContext";
 
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const params = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const context = useContext(UserFollowingContext);
+  const { followingList } = context;
 
   useEffect(() => {
     const getPosts = async () => {
@@ -42,6 +45,8 @@ export const Profile = () => {
     getUserInfo();
   }, [params.username]);
 
+  console.log("la lista cheta: ", followingList);
+
   if (isLoading) return <ProfileSkeleton />;
 
   return (
@@ -61,11 +66,14 @@ export const Profile = () => {
           <h2 className="user-name">{userInfo.full_name}</h2>
           <h3 className="user-username">{userInfo.username}</h3>
           <p>{userInfo?.description}</p>
-          <article className="profile-sections">
-            <span>Followers: 0</span>
-            <span>Following: 0</span>
-            <span>Posts: {posts.length}</span>
-          </article>
+          <section className="user-details-bottom">
+            <article className="profile-sections">
+              <span>Followers: 0</span>
+              <span>Following: 0</span>
+              <span>Posts: {posts.length}</span>
+            </article>
+            <button className="Follow-button">Follow</button>
+          </section>
         </article>
       </section>
       <section className="posts-container--profile">

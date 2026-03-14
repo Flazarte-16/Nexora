@@ -8,27 +8,30 @@ import { Profile } from "./pages/Profile/Profile";
 import { Explore } from "./pages/Explore/Explore";
 import { AuthContextProvider } from "./context/AuthContext";
 import { PostContextProvider } from "./context/PostContext";
+import { UserFollowingContextProvider } from "./context/UserFollowingContext";
 
 function App() {
   const [location] = useLocation();
 
   return (
     <div className="app">
-      <PostContextProvider>
-        <AuthContextProvider>
-          <Switch>
-            <Route path="/" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/home" component={Home} />
-            <Route path="/explore" component={Explore} />
-            <Route path="/:username" component={Profile} />
-          </Switch>
-          {location !== "/" && location !== "/register" && <SideBar />}
-          {location !== "/" &&
-            location !== "/register" &&
-            location !== "/explore" && <RightSidebar />}
-        </AuthContextProvider>
-      </PostContextProvider>
+      <AuthContextProvider>
+        <UserFollowingContextProvider>
+          <PostContextProvider>
+            <Switch>
+              <Route path="/" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/home" component={Home} />
+              <Route path="/explore" component={Explore} />
+              <Route path="/:username" component={Profile} />
+            </Switch>
+            {location !== "/" && location !== "/register" && <SideBar />}
+            {location !== "/" &&
+              location !== "/register" &&
+              location !== "/explore" && <RightSidebar />}
+          </PostContextProvider>
+        </UserFollowingContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }
