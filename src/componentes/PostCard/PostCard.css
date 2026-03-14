@@ -95,7 +95,7 @@
 .post-card-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  color: white;
 }
 
 .action-btn {
@@ -127,6 +127,10 @@
 }
 
 .action-btn.likes:hover ion-icon {
+  color: #fb7185;
+}
+
+.action-btn.likes.active ion-icon {
   color: #fb7185;
 }
 
@@ -188,4 +192,11 @@
 .form-comment button ion-icon {
   color: #3b5bff;
   font-size: 18px;
+}
+
+.post-card-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
 }

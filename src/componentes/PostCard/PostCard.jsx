@@ -8,48 +8,33 @@ export const PostCard = ({ post }) => {
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [commentContent, setCommentContent] = useState("");
-  const [likes, setLikes] = useState(0);
+  const [cantLikes, setCantLikes] = useState(post.cant_likes);
+  const [likedPosts, setLikedPosts] = useState([]);
   const { user } = useAuth();
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch(`http://localhost:3000/v1/likes/${post.id}`);
-      const data = await response.json();
-      setLikes(data.likes);
-    };
-    getData();
-  }, [post.id]);
-
-  useEffect(() => {
-    const getData = async () => {
+  const handleLike = async () => {
+    try {
       const response = await fetch(
-        `http://localhost:3000/v1/comments/${post.id}`,
+        `http://localhost:3000/v1/likes/${post.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
       );
       const data = await response.json();
-      setComments(data.comments);
-    };
-    getData();
-  }, [post.id]);
+      alert(data.message);
 
-  const handleLike = async () => {
-    const user_id = user.id;
+      if (data.type === "added") {
+        setLikedPosts((prev) => [...prev, { ...data.postLike }]);
+        console.log("oaaaa: ", data.postLike);
+      } else if (data.type === "removed") {
+        setLikedPosts((prev) => [...prev].filter((p) => p.post_id !== post.id));
+      }
 
-    try {
-      await fetch("http://localhost:3000/v1/likes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_id, post_id: post.id }),
-      });
-
-      const res = await fetch(`http://localhost:3000/v1/likes/${post.id}`);
-      const data = await res.json();
-
-      console.log("likes after like:", data);
-
-      setLikes(data.likes);
-      alert("Posteo Likeado");
+      setCantLikes(data.newPostCantLikes);
     } catch (error) {
       console.error(error);
     }
@@ -78,6 +63,30 @@ export const PostCard = ({ post }) => {
     setComments((prev) => [{ ...data.newComment, user: { ...user } }, ...prev]);
     setCommentContent("");
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch(
+        `http://localhost:3000/v1/comments/${post.id}`,
+      );
+      const data = await response.json();
+      setComments(data.comments);
+    };
+
+    const getLikedPosts = async () => {
+      const response = await fetch(
+        `http://localhost:3000/v1/users/${user.id}/likes`,
+      );
+      const data = await response.json();
+      setLikedPosts(data.likedPosts);
+    };
+
+    getData();
+    getLikedPosts();
+  }, [post.id]);
+
+  const likeButtonActive =
+    likedPosts.some((p) => Number(p.post_id) === post.id) && "active";
 
   return (
     <article className="post-card">
@@ -114,18 +123,25 @@ export const PostCard = ({ post }) => {
           ),
         )}
       </p>
-      <article className="post-card-actions">
-        <button
-          className="action-btn comments"
-          onClick={() => setShowComments(!showComments)}
-        >
-          <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
-          <span>{comments.length}</span>
-        </button>
-        <button className="action-btn likes" onClick={handleLike}>
-          <ion-icon className="sidebar-icon" name="heart"></ion-icon>
-          <span>{likes}</span>
-        </button>
+      <article className="post-card-actions-container">
+        <article className="post-card-actions">
+          <button
+            className="action-btn comments"
+            onClick={() => setShowComments(!showComments)}
+          >
+            <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
+          </button>
+          <p>{comments.length}</p>
+        </article>
+        <article className="post-card-actions">
+          <button
+            className={`action-btn likes ${likeButtonActive}`}
+            onClick={handleLike}
+          >
+            <ion-icon className="sidebar-icon" name="heart"></ion-icon>
+          </button>
+          <p>{cantLikes}</p>
+        </article>
       </article>
       <section
         className={`post-card-comments ${showComments ? "show" : "hide"}`}
