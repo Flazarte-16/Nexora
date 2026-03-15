@@ -17,10 +17,10 @@ export const UserFollowingContextProvider = ({ children }) => {
 
   useEffect(() => {
     getUserFollowing();
-  }, []);
+  }, [user]);
 
   return (
-    <UserFollowingContext.Provider value={{ followingList }}>
+    <UserFollowingContext.Provider value={{ followingList, setFollowingList }}>
       {children}
     </UserFollowingContext.Provider>
   );

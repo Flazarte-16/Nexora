@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./Followers.css";
 import { Link } from "wouter";
+import { UserCard } from "../UserCard/UserCard";
 
 export const Followers = () => {
   const [users, setUsers] = useState([]);
@@ -20,21 +21,10 @@ export const Followers = () => {
 
   return (
     <div className="profiles-container">
-      <h2>Profiles for you</h2>
+      <h2>Suggested for you</h2>
       {users &&
         users.length > 0 &&
-        users.map((user) => (
-          <div className="profiles" key={user.id}>
-            <img src={user.image_url} alt={`${user.username} image`} />
-            <section className="profile-info">
-              <Link className="relocation-user" to={`/${user.username}`}>
-                <h4>{user.full_name}</h4>
-              </Link>
-              <p className="profile-username">{user.username}</p>
-            </section>
-            <button className="Follow-button">Follow</button>
-          </div>
-        ))}
+        users.map((user) => <UserCard key={user.id} user={user} />)}
     </div>
   );
 };

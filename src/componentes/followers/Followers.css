@@ -13,63 +13,6 @@
 .profiles-container h2 {
   color: #ffffff;
   font-weight: 500;
-  font-size: 1.2rem;
-  line-height: 1.2;
-}
-
-.profiles {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  width: 100px;
-}
-
-.profile-info h4 {
-  color: #ffffff;
-  font-weight: 400;
-  letter-spacing: 0.8px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.profile-username {
-  color: #94a3b3;
-  letter-spacing: 0.6px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.profiles img {
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
-}
-
-.Follow-button {
-  border-radius: 10px;
-  width: 90px;
-  height: 35px;
-  background-color: #1334d8;
-  border-radius: 10px;
-  color: white;
-  border: none;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.Follow-button:hover {
-  box-shadow: 0 4px 14px rgba(19, 52, 216, 0.35);
+  line-height: 1.2;
 }

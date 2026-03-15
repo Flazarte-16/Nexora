@@ -29,7 +29,6 @@ export const PostCard = ({ post }) => {
 
       if (data.type === "added") {
         setLikedPosts((prev) => [...prev, { ...data.postLike }]);
-        console.log("oaaaa: ", data.postLike);
       } else if (data.type === "removed") {
         setLikedPosts((prev) => [...prev].filter((p) => p.post_id !== post.id));
       }
