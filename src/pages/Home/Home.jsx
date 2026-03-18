@@ -1,20 +1,54 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CreatePost } from "../../componentes/CreatePost/CreatePost";
 import "./Home.css";
 import "ionicons";
 import { PostCard } from "../../componentes/PostCard/PostCard";
 import { PostCardSkeleton } from "../../componentes/Skeletons/Skeletons";
 import { usePost } from "../../hooks/usePost";
+import { UserFollowingContext } from "../../context/UserFollowingContext";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Home = () => {
   const { posts, isLoading } = usePost();
+  const { followingList } = useContext(UserFollowingContext);
+  const { user } = useAuth();
+
+  const [feedType, setFeedType] = useState("For You");
+
+  const followingIds = followingList.map((u) => Number(u.id_user_following));
+
+  const filteredPosts =
+    feedType === "Following"
+      ? posts.filter((post) =>
+          followingList.some(
+            (user) =>
+              followingIds.includes(Number(post.user_id)) ||
+              Number(post.user_id) === user.id,
+          ),
+        )
+      : posts;
 
   return (
     <main className="main main--home">
       <CreatePost />
+      <section className="posts-changer">
+        <p
+          className={feedType === "For You" ? "active" : ""}
+          onClick={() => setFeedType("For You")}
+        >
+          For You
+        </p>
+        <span>/</span>
+        <p
+          className={feedType === "Following" ? "active" : ""}
+          onClick={() => setFeedType("Following")}
+        >
+          Following
+        </p>
+      </section>
       <section className="posts-container">
         {!isLoading ? (
-          posts.map((post) => <PostCard key={post.id} post={post} />)
+          filteredPosts.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <>
             <PostCardSkeleton />

@@ -23,6 +23,22 @@
   gap: 20px;
 }
 
+.posts-changer {
+  color: #fff;
+  display: flex;
+  gap: 20px;
+}
+
+.posts-changer p {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.posts-changer p.active {
+  opacity: 1;
+  font-weight: bold;
+}
+
 @media (width <= 1440px) {
   .main--home {
     padding-left: 12rem;
