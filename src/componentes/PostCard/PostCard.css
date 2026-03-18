@@ -76,10 +76,6 @@
   color: #3b5bff;
 }
 
-.relocation-user.mention:hover {
-  text-decoration: underline;
-}
-
 .card-content {
   color: white;
   border-bottom: 1px solid #1e293b;
@@ -126,28 +122,16 @@
   background-color: #271b26;
 }
 
+.action-btn.likes.disabled ion-icon {
+  color: rgb(100, 116, 139);
+}
+
 .action-btn.likes:hover ion-icon {
   color: #fb7185;
 }
 
 .action-btn.likes.active ion-icon {
   color: #fb7185;
-}
-
-.post-card-comments {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding-top: 15px;
-  animation: fadeComments 0.2s ease;
-}
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: flex;
 }
 
 @keyframes fadeComments {
@@ -165,33 +149,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.form-comment input {
-  flex: 1;
-  padding: 8px 10px;
-  background-color: #0f1324;
-  border: 1px solid #1e293b;
-  border-radius: 8px;
-  outline: none;
-  color: #ffffff;
-  font-size: 0.95rem;
-  transition: border 0.2s ease;
-}
-
-.form-comment input:focus {
-  border: 1px solid #3b5bff;
-}
-
-.form-comment button {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
-.form-comment button ion-icon {
-  color: #3b5bff;
-  font-size: 18px;
 }
 
 .post-card-actions-container {

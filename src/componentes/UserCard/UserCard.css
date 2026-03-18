@@ -59,3 +59,77 @@
   font-weight: 400;
   font-size: 0.8rem;
 }
+
+.profiles--explore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  gap: 1rem;
+  background-color: #14182b;
+  border: 1px solid #1e293b;
+  border-radius: 1.25rem;
+  width: 280px;
+  height: 280px;
+  background-image:
+    radial-gradient(
+      300px circle at -10% 110%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      300px circle at 110% -10%,
+      rgba(77, 100, 216, 0.25),
+      transparent 60%
+    );
+}
+
+.profiles--explore section {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profiles--explore img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profiles--explore button {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1334d8;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.profiles--explore .profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profiles--explore .profile-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.profiles--explore .profile-username {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.profiles--explore .profile-description {
+  color: #94a3b8;
+  white-space: nowrap;
+  text-align: center;
+  width: 200px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}

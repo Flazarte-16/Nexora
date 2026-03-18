@@ -24,7 +24,7 @@ export const Followers = () => {
       <h2>Suggested for you</h2>
       {users &&
         users.length > 0 &&
-        users.map((user) => <UserCard key={user.id} user={user} />)}
+        users.map((user) => <UserCard u={user} key={user.id} />)}
     </div>
   );
 };

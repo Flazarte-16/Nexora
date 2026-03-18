@@ -1,7 +1,7 @@
 import "./Profile.css";
 import { useContext, useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
-import { useParams } from "wouter";
+import { Link, useParams } from "wouter";
 import { ProfileSkeleton } from "../../componentes/Skeletons/Skeletons";
 import { UserFollowingContext } from "../../context/UserFollowingContext";
 import { useAuth } from "../../hooks/useAuth";
@@ -51,6 +51,8 @@ export const Profile = () => {
   };
 
   useEffect(() => {
+    if (!userInfo) return;
+
     const getPosts = async () => {
       try {
         const response = await fetch(
@@ -83,12 +85,29 @@ export const Profile = () => {
   }, [params.username]);
 
   const textFollowBtn = followingList.some(
-    (uf) => uf.id_user_following === userInfo.id,
+    (uf) => uf.id_user_following === userInfo?.id,
   )
     ? "Following"
     : "Follow";
 
   if (isLoading) return <ProfileSkeleton />;
+
+  if (!userInfo) {
+    return (
+      <main className="main main--not-found">
+        <img src="public/nexora-logo-broken.png" alt="image not found" />
+        <h2 className="title-not-found">Sorry, this page isn't available.</h2>
+        <p className="subtitle-not-found">
+          The link you followed may be broken, or the page may have been
+          removed.{" "}
+          <Link className="relocate-not-found" to="/home">
+            Go back to Nexora home page
+          </Link>
+          .
+        </p>
+      </main>
+    );
+  }
 
   return (
     <main className="main main--profile">

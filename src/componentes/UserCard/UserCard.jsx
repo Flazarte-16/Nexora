@@ -2,14 +2,16 @@ import { Link } from "wouter";
 import "./UserCard.css";
 import { UserFollowingContext } from "../../context/UserFollowingContext";
 import { useContext } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
-export const UserCard = ({ user }) => {
+export const UserCard = ({ u, variant }) => {
+  const { user } = useAuth();
   const context = useContext(UserFollowingContext);
   const { followingList, setFollowingList } = context;
 
   const handleFollow = async () => {
     const response = await fetch(
-      `http://localhost:3000/v1/users/follow/${user.username}`,
+      `http://localhost:3000/v1/users/follow/${u.username}`,
       {
         method: "POST",
         headers: {
@@ -35,25 +37,28 @@ export const UserCard = ({ user }) => {
   };
 
   const textFollowBtn = followingList.some(
-    (uf) => uf.id_user_following === user.id,
+    (uf) => uf.id_user_following === u.id,
   )
     ? "Following"
     : "Follow";
 
   return (
-    <div className="profiles">
+    <div className={`profiles ${variant === "extend" && "profiles--explore"}`}>
       <section className="profile-left">
-        <img src={user.image_url} alt={`${user.username} image`} />
+        <img src={u.image_url} alt={`${u.username} image`} />
         <section className="profile-info">
-          <Link className="relocation-user" to={`/${user.username}`}>
-            <h4>{user.full_name}</h4>
+          <Link className="relocation-user" to={`/${u.username}`}>
+            <h4>{u.full_name}</h4>
           </Link>
-          <p className="profile-username">@{user.username}</p>
+          <p className="profile-username">@{u.username}</p>
+          <p>{variant === "extend" && u.description}</p>
         </section>
       </section>
-      <button className="follow-button" onClick={handleFollow}>
-        {textFollowBtn}
-      </button>
+      {user.id !== u.id && (
+        <button className="follow-button" onClick={handleFollow}>
+          {textFollowBtn}
+        </button>
+      )}
     </div>
   );
 };

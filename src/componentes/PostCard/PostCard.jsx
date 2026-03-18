@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import "./PostCard.css";
 import { Link } from "wouter";
 import { useAuth } from "../../hooks/useAuth";
-import { CommentCard } from "../CommentCard/CommentCard";
+import { PostCommentList } from "../PostCommentList/PostCommentList";
 
 export const PostCard = ({ post }) => {
-  const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
-  const [commentContent, setCommentContent] = useState("");
   const [cantLikes, setCantLikes] = useState(post.cant_likes);
   const [likedPosts, setLikedPosts] = useState([]);
   const { user } = useAuth();
@@ -25,12 +23,17 @@ export const PostCard = ({ post }) => {
         },
       );
       const data = await response.json();
-      alert(data.message);
+
+      const { postLike } = data;
+
+      console.log(postLike);
 
       if (data.type === "added") {
         setLikedPosts((prev) => [...prev, { ...data.postLike }]);
       } else if (data.type === "removed") {
-        setLikedPosts((prev) => [...prev].filter((p) => p.post_id !== post.id));
+        setLikedPosts((prev) =>
+          [...prev].filter((p) => p.post_id !== postLike.post_id),
+        );
       }
 
       setCantLikes(data.newPostCantLikes);
@@ -39,39 +42,7 @@ export const PostCard = ({ post }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch(
-      `http://localhost:3000/v1/posts/${post.id}/comment/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ content: commentContent }),
-      },
-    );
-    const data = await response.json();
-
-    if (data.type === "EMPTY_INPUTS") {
-      alert(data.message);
-      return;
-    }
-
-    setComments((prev) => [{ ...data.newComment, user: { ...user } }, ...prev]);
-    setCommentContent("");
-  };
-
   useEffect(() => {
-    const getData = async () => {
-      const response = await fetch(
-        `http://localhost:3000/v1/comments/${post.id}`,
-      );
-      const data = await response.json();
-      setComments(data.comments);
-    };
-
     const getLikedPosts = async () => {
       const response = await fetch(
         `http://localhost:3000/v1/users/${user.id}/likes`,
@@ -80,12 +51,37 @@ export const PostCard = ({ post }) => {
       setLikedPosts(data.likedPosts);
     };
 
-    getData();
     getLikedPosts();
   }, [post.id]);
 
-  const likeButtonActive =
-    likedPosts.some((p) => Number(p.post_id) === post.id) && "active";
+  let likeButtonActive = likedPosts.some((p) => Number(p.post_id) === post.id)
+    ? "active"
+    : "disabled";
+
+  const formattedContent = (content) => {
+    const words = content.split(" ");
+    return words.map((word) => {
+      if (word.startsWith("@")) {
+        return (
+          <Link
+            key={word}
+            className="relocation-user mention"
+            to={`/${word.slice(1)}`}
+          >
+            {" " + word}
+          </Link>
+        );
+      } else if (word.startsWith("#")) {
+        return (
+          <span key={word} className="hashtag">
+            {" " + word}
+          </span>
+        );
+      } else {
+        return " " + word;
+      }
+    });
+  };
 
   return (
     <article className="post-card">
@@ -103,25 +99,7 @@ export const PostCard = ({ post }) => {
           <p>{post.time_ago}</p>
         </section>
       </section>
-      <p className="card-content">
-        {post.content.split(" ").map((word) =>
-          word.startsWith("@") ? (
-            <Link
-              key={word}
-              className="relocation-user mention"
-              to={`/${word.slice(1)}`}
-            >
-              {" " + word}
-            </Link>
-          ) : word.startsWith("#") ? (
-            <span key={word} className="hashtag">
-              {" " + word}
-            </span>
-          ) : (
-            " " + word
-          ),
-        )}
-      </p>
+      <p className="card-content">{formattedContent(post.content)}</p>
       <article className="post-card-actions-container">
         <article className="post-card-actions">
           <button
@@ -130,7 +108,7 @@ export const PostCard = ({ post }) => {
           >
             <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
           </button>
-          <p>{comments.length}</p>
+          <p>{post.cant_comments}</p>
         </article>
         <article className="post-card-actions">
           <button
@@ -142,24 +120,7 @@ export const PostCard = ({ post }) => {
           <p>{cantLikes}</p>
         </article>
       </article>
-      <section
-        className={`post-card-comments ${showComments ? "show" : "hide"}`}
-      >
-        <form className="form-comment" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="comment..."
-            value={commentContent}
-            onChange={(e) => setCommentContent(e.target.value)}
-          />
-          <button>
-            <ion-icon name="send-outline"></ion-icon>
-          </button>
-        </form>
-        {comments.map((comment) => (
-          <CommentCard key={comment.id} comment={comment} />
-        ))}
-      </section>
+      <PostCommentList post_id={post.id} showComments={showComments} />
     </article>
   );
 };

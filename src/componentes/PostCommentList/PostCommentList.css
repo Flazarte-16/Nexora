@@ -1,0 +1,51 @@
+.post-card-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 15px;
+  animation: fadeComments 0.2s ease;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.form-comment input {
+  flex: 1;
+  padding: 8px 10px;
+  background-color: #0f1324;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.form-comment input:focus {
+  border: 1px solid #3b5bff;
+}
+
+.form-comment button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-comment button ion-icon {
+  color: #3b5bff;
+  font-size: 18px;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}

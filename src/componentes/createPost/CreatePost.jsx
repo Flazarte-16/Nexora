@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreatePost.css";
 import { useAuth } from "../../hooks/useAuth";
 import { usePost } from "../../hooks/usePost";

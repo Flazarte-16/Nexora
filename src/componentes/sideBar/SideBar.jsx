@@ -3,7 +3,6 @@ import { Link, useLocation } from "wouter";
 import "./SideBar.css";
 import "ionicons";
 import { useAuth } from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
 
 export const SideBar = () => {
   const [location, navigate] = useLocation();

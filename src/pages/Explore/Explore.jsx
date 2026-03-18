@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Explore.css";
 import { Link } from "wouter";
+import { UserCard } from "../../componentes/UserCard/UserCard";
 
 export const Explore = () => {
   const [username, setUsername] = useState("");
@@ -45,21 +46,7 @@ export const Explore = () => {
         {users &&
           users.length > 0 &&
           users.map((user) => (
-            <div className="profiles profiles--explore" key={user.id}>
-              <img src={user.image_url} alt={`${user.username} image`} />
-              <section className="profile-info">
-                <Link
-                  /*  onClick={handleRelocation} */
-                  className="relocation-user"
-                  to={`/${user.username}`}
-                >
-                  <h4>{user.full_name}</h4>
-                </Link>
-                <p className="profile-username">{user.username}</p>
-                <p className="profile-description">{user.description}</p>
-              </section>
-              <button className="Follow-button">Follow</button>
-            </div>
+            <UserCard u={user} key={user.id} variant="extend" />
           ))}
       </section>
     </main>
