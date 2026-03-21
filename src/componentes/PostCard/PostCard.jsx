@@ -99,6 +99,9 @@ export const PostCard = ({ post }) => {
         </section>
       </section>
       <p className="card-content">{formattedContent(post.content)}</p>
+      {post.image_url && (
+        <img className="post-image_url" src={post.image_url} alt="image post" />
+      )}
       <article className="post-card-actions-container">
         <article className="post-card-actions">
           <button

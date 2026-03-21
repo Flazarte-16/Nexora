@@ -37,14 +37,14 @@
 .users-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 10px;
-  width: 100%;
+  width: 800px;
 }
 
 .search-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 800px;
 }

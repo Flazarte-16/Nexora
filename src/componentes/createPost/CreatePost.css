@@ -34,7 +34,7 @@
   gap: 1.25rem;
 }
 
-.input-container-create img {
+.profile-image {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 50%;
@@ -59,10 +59,20 @@
 
 .input-post {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
   padding-top: 1rem;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.input-post .file {
+  display: none;
+}
+
+.input-post .label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-post ion-icon {
@@ -99,4 +109,10 @@
 
 .input-post button:active {
   transform: scale(0.97);
+}
+
+.image-preview {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
 }

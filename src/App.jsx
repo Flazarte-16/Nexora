@@ -9,12 +9,14 @@ import { Explore } from "./pages/Explore/Explore";
 import { AuthContextProvider } from "./context/AuthContext";
 import { PostContextProvider } from "./context/PostContext";
 import { UserFollowingContextProvider } from "./context/UserFollowingContext";
+import { Toaster } from "sileo";
 
 function App() {
   const [location] = useLocation();
 
   return (
     <div className="app">
+      <Toaster position="top-right" />
       <AuthContextProvider>
         <UserFollowingContextProvider>
           <PostContextProvider>

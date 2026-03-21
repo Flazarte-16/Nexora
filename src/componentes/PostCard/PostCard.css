@@ -157,3 +157,9 @@
   justify-content: start;
   gap: 4px;
 }
+
+.post-image_url {
+  width: 400px;
+  height: auto;
+  object-fit: contain;
+}
