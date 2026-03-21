@@ -7,6 +7,7 @@ import { PostCommentList } from "../PostCommentList/PostCommentList";
 export const PostCard = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
   const [cantLikes, setCantLikes] = useState(post.cant_likes);
+  const [cantComments, setCantComments] = useState(post?.cant_comments);
   const [likedPosts, setLikedPosts] = useState([]);
   const { user } = useAuth();
 
@@ -25,8 +26,6 @@ export const PostCard = ({ post }) => {
       const data = await response.json();
 
       const { postLike } = data;
-
-      console.log(postLike);
 
       if (data.type === "added") {
         setLikedPosts((prev) => [...prev, { ...data.postLike }]);
@@ -108,7 +107,7 @@ export const PostCard = ({ post }) => {
           >
             <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
           </button>
-          <p>{post.cant_comments}</p>
+          <p>{cantComments}</p>
         </article>
         <article className="post-card-actions">
           <button
@@ -120,7 +119,11 @@ export const PostCard = ({ post }) => {
           <p>{cantLikes}</p>
         </article>
       </article>
-      <PostCommentList post_id={post.id} showComments={showComments} />
+      <PostCommentList
+        post_id={post.id}
+        showComments={showComments}
+        setCantComments={setCantComments}
+      />
     </article>
   );
 };

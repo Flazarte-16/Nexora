@@ -3,7 +3,7 @@ import { CommentCard } from "../CommentCard/CommentCard";
 import "./PostCommentList.css";
 import { useAuth } from "../../hooks/useAuth";
 
-export const PostCommentList = ({ post_id, showComments }) => {
+export const PostCommentList = ({ post_id, showComments, setCantComments }) => {
   const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState("");
   const { user } = useAuth();
@@ -29,6 +29,7 @@ export const PostCommentList = ({ post_id, showComments }) => {
     }
 
     setComments((prev) => [{ ...data.newComment, user: { ...user } }, ...prev]);
+    setCantComments((prev) => prev + 1);
     setCommentContent("");
   };
 
