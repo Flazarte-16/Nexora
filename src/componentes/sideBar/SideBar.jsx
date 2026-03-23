@@ -3,10 +3,18 @@ import { Link, useLocation } from "wouter";
 import "./SideBar.css";
 import "ionicons";
 import { useAuth } from "../../hooks/useAuth";
+import { useContext } from "react";
+import { NotificationsContext } from "../../context/NotificationsContext";
 
 export const SideBar = () => {
   const [location, navigate] = useLocation();
   const { user, logout } = useAuth();
+  const context = useContext(NotificationsContext);
+  const { notifications } = context;
+  const pendingNotifications = notifications.reduce(
+    (acum, el) => (el.is_read === false ? acum + 1 : acum),
+    0,
+  );
 
   const handleLogoutClick = () => {
     const response = logout();
@@ -36,13 +44,19 @@ export const SideBar = () => {
           <ion-icon className="sidebar-icon" name="compass-sharp"></ion-icon>
           <p>Explore</p>
         </Link>
-        <div className="sidebar-item">
+        <Link
+          to="/notifications"
+          className={`sidebar-item ${
+            location === "/notifications" && "active"
+          }`}
+        >
           <ion-icon
             className="sidebar-icon"
             name="notifications-sharp"
           ></ion-icon>
           <p>Notifications</p>
-        </div>
+          {pendingNotifications > 0 && <span>{pendingNotifications}</span>}
+        </Link>
         <div className="sidebar-item">
           <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
           <p>Messages</p>

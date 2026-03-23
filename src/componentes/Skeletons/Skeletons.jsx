@@ -42,3 +42,7 @@ export const PostCardSkeleton = () => {
     </article>
   );
 };
+
+export const UserCardSkeleton = () => {
+  return <div className="user-card-skeleton"></div>;
+};

@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { usePost } from "../../hooks/usePost";
 import { sileo } from "sileo";
 
-export const CreatePost = () => {
+export const CreatePost = ({ setIsLoading }) => {
   const [newPost, setNewPost] = useState({
     content: "",
     file: null,
@@ -15,6 +15,7 @@ export const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const formData = new FormData();
       formData.append("content", newPost.content);
@@ -28,8 +29,6 @@ export const CreatePost = () => {
         body: formData,
       });
 
-      console.log(newPost);
-
       const data = await response.json();
 
       if (data.type === "EMPTY_INPUTS") {
@@ -41,9 +40,12 @@ export const CreatePost = () => {
         { ...data.newPost, user: { ...user } },
         ...prevPosts,
       ]);
-      setNewPost({ content: "" });
+      setNewPost({ content: "", file: null });
+      setImagePreview("");
     } catch (e) {
       console.log(e.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,12 +54,13 @@ export const CreatePost = () => {
 
     if (!newFile.type.startsWith("image/")) {
       sileo.error({
-        title: "Invalid file type",
-        description: "Please upload an image file.",
-        fill: "black",
-        styles: {
-          description: "white",
-        },
+        title: "Please upload an image file.",
+        duration: 1000,
+        fill: "#000000",
+      });
+      setNewPost({
+        content: "",
+        file: null,
       });
       return;
     }
@@ -69,8 +72,6 @@ export const CreatePost = () => {
       file: newFile,
     });
   };
-
-  console.log(newPost);
 
   return (
     <form className="input-container-create" onSubmit={handleSubmit}>

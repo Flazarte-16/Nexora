@@ -53,6 +53,7 @@
 .sidebar-container:hover .relocation,
 .sidebar-container:hover .profile-name {
   opacity: 1;
+  display: flex;
   max-width: 180px;
 }
 
@@ -63,6 +64,7 @@
   padding: 0.875rem 1rem;
   cursor: pointer;
   color: #cbd5e1;
+  position: relative;
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 0.75rem;
@@ -72,6 +74,23 @@
     transform 0.15s ease;
   width: 100%;
   text-decoration: none;
+}
+
+.sidebar-item span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #3b5bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-item p {
+  display: none;
 }
 
 .sidebar-item.active {

@@ -43,22 +43,28 @@ export const UserCard = ({ u, variant }) => {
     : "Follow";
 
   return (
-    <div className={`profiles ${variant === "extend" && "profiles--explore"}`}>
-      <section className="profile-left">
-        <img src={u.image_url} alt={`${u.username} image`} />
-        <section className="profile-info">
-          <Link className="relocation-user" to={`/${u.username}`}>
-            <h4>{u.full_name}</h4>
-          </Link>
-          <p className="profile-username">@{u.username}</p>
-          <p>{variant === "extend" && u.description}</p>
+    <>
+      <div
+        className={`profiles ${variant === "extend" && "profiles--explore"}`}
+      >
+        <section className="profile-left">
+          <img src={u.image_url} alt={`${u.username} image`} />
+          <section className="profile-info">
+            <Link className="relocation-user" to={`/${u.username}`}>
+              <h4>{u.full_name}</h4>
+            </Link>
+            <p className="profile-username">@{u.username}</p>
+            <p className="profile-card-description">
+              {variant === "extend" && u.description}
+            </p>
+          </section>
         </section>
-      </section>
-      {user.id !== u.id && (
-        <button className="follow-button" onClick={handleFollow}>
-          {textFollowBtn}
-        </button>
-      )}
-    </div>
+        {user.id !== u.id && (
+          <button className="follow-button" onClick={handleFollow}>
+            {textFollowBtn}
+          </button>
+        )}
+      </div>
+    </>
   );
 };

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./Explore.css";
-import { Link } from "wouter";
 import { UserCard } from "../../componentes/UserCard/UserCard";
+import { UserCardSkeleton } from "../../componentes/Skeletons/Skeletons";
 
 export const Explore = () => {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (e) => setUsername(e.target.value);
 
@@ -16,11 +17,16 @@ export const Explore = () => {
     }
 
     const getData = setTimeout(async () => {
-      const response = await fetch(
-        `http://localhost:3000/v1/users?username=${username}`,
-      );
-      const data = await response.json();
-      setUsers(data.user);
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `http://localhost:3000/v1/users?username=${username}`,
+        );
+        const data = await response.json();
+        setUsers(data.user);
+      } finally {
+        setIsLoading(false);
+      }
     }, 400);
 
     return () => clearTimeout(getData);
@@ -43,11 +49,20 @@ export const Explore = () => {
         </section>
       )}
       <section className="users-container">
-        {users &&
-          users.length > 0 &&
+        {users && users.length > 0 && !isLoading ? (
           users.map((user) => (
             <UserCard u={user} key={user.id} variant="extend" />
-          ))}
+          ))
+        ) : isLoading && username ? (
+          <>
+            <UserCardSkeleton />
+            <UserCardSkeleton />
+            <UserCardSkeleton />
+            <UserCardSkeleton />
+          </>
+        ) : (
+          ""
+        )}
       </section>
     </main>
   );

@@ -42,7 +42,8 @@
 
 .profiles img {
   width: 40px;
-  height: auto;
+  height: 40px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -70,8 +71,8 @@
   background-color: #14182b;
   border: 1px solid #1e293b;
   border-radius: 1.25rem;
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 270px;
   background-image:
     radial-gradient(
       300px circle at -10% 110%,
@@ -132,4 +133,11 @@
   width: 200px;
   overflow-x: hidden;
   text-overflow: ellipsis;
+}
+
+.profile-card-description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  width: 200px;
 }

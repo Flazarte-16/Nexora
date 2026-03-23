@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CreatePost } from "../../componentes/CreatePost/CreatePost";
 import "./Home.css";
 import "ionicons";
@@ -11,6 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 export const Home = () => {
   const { posts, isLoading } = usePost();
   const { followingList } = useContext(UserFollowingContext);
+  const [isLoadingNewPost, setIsLoadingNewPost] = useState(false);
   const { user } = useAuth();
 
   const [feedType, setFeedType] = useState("For You");
@@ -28,9 +29,12 @@ export const Home = () => {
         )
       : posts;
 
+  const mainClass = isLoadingNewPost && "is-loading";
+
   return (
-    <main className="main main--home">
-      <CreatePost />
+    <main className={`main main--home ${mainClass}`}>
+      <CreatePost setIsLoading={setIsLoadingNewPost} />
+      {isLoadingNewPost && <span className="loader"></span>}
       <section className="posts-changer">
         <p
           className={feedType === "For You" ? "active" : ""}

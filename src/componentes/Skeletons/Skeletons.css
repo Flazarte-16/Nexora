@@ -6,7 +6,8 @@
 .user-username.skeleton,
 .user-description.skeleton,
 .post-card-content.skeleton,
-.action-btn.skeleton {
+.action-btn.skeleton,
+.user-card-skeleton {
   background: linear-gradient(90deg, #2a2f45 25%, #3a4060 50%, #2a2f45 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
@@ -82,4 +83,10 @@
   100% {
     background-position: -200% 0;
   }
+}
+
+.user-card-skeleton {
+  border-radius: 1.25rem;
+  width: 260px;
+  height: 270px;
 }
