@@ -11,6 +11,7 @@ export const Profile = () => {
   const [userInfo, setUserInfo] = useState({});
   const { user } = useAuth();
   const params = useParams();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const context = useContext(UserFollowingContext);
   const { followingList, setFollowingList } = context;
@@ -109,8 +110,18 @@ export const Profile = () => {
     );
   }
 
+  const modalClassName = modalIsOpen && "active";
+
   return (
-    <main className="main main--profile">
+    <main className={`main main--profile ${modalClassName}`}>
+      <section className={`modal modal--edit ${modalClassName}`}>
+        <h2 className="title l">Edit profile</h2>
+        <section className="input-container-modal">
+          <input type="text" placeholder={userInfo.full_name} />
+          <input type="text" placeholder={`@${userInfo.username}`} />
+        </section>
+        <button className="btn-modal">Edit</button>
+      </section>
       <section className="user-info">
         <section
           className="banner"
@@ -124,7 +135,7 @@ export const Profile = () => {
             className="user-img"
           />
           <h2 className="user-name">{userInfo.full_name}</h2>
-          <h3 className="user-username">{userInfo.username}</h3>
+          <h3 className="user-username">@{userInfo.username}</h3>
           <p>{userInfo?.description}</p>
           <section className="user-details-bottom">
             <article className="profile-sections">
@@ -132,7 +143,12 @@ export const Profile = () => {
               <span>Posts: {posts.length}</span>
             </article>
             {userInfo.id === user.id ? (
-              <button className="edit-button">Edit profile</button>
+              <button
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+                className="edit-button"
+              >
+                Edit profile
+              </button>
             ) : (
               <button
                 className="follow-button follow-button--profile"
