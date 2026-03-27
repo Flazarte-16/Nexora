@@ -218,27 +218,33 @@
   position: absolute;
   z-index: 9998;
   background-color: rgba(0, 0, 0, 0.495);
+  animation: loadIn ease 0.2s;
 }
 
 .modal {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   position: absolute;
   border: 1px solid #1e293b;
   background-color: #101322;
-  border-radius: 8px;
+  border-radius: 10px;
   z-index: 9999;
-  top: 50%;
+  top: 200px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   gap: 10px;
   width: 400px;
+  animation: loadIn ease 0.2s;
 }
 
 .modal.modal--edit {
+  display: none;
   padding: 20px 0;
+}
+
+.modal.modal--edit.active {
+  display: flex;
 }
 
 .input-container-modal {
@@ -287,4 +293,18 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.btn-modal.edit {
+  background-color: rgba(226, 225, 225, 0.121);
+  color: white;
+}
+
+@keyframes loadIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

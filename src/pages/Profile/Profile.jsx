@@ -1,7 +1,7 @@
 import "./Profile.css";
 import { useContext, useEffect, useState } from "react";
 import { PostCard } from "../../componentes/PostCard/PostCard";
-import { Link, useParams } from "wouter";
+import { Link, useLocation, useParams } from "wouter";
 import { ProfileSkeleton } from "../../componentes/Skeletons/Skeletons";
 import { UserFollowingContext } from "../../context/UserFollowingContext";
 import { useAuth } from "../../hooks/useAuth";
@@ -9,12 +9,17 @@ import { useAuth } from "../../hooks/useAuth";
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const params = useParams();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const context = useContext(UserFollowingContext);
   const { followingList, setFollowingList } = context;
+  const [updateUserValues, setUpdateUserValues] = useState({
+    username: "",
+    full_name: "",
+  });
+  const [_, navigate] = useLocation();
 
   const handleFollow = async () => {
     const response = await fetch(
@@ -51,6 +56,39 @@ export const Profile = () => {
     alert(data.message);
   };
 
+  const handleUpdateUser = async () => {
+    const response = await fetch("http://localhost:3000/v1/users/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        username: updateUserValues.username,
+        full_name: updateUserValues.full_name,
+      }),
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    setUserInfo({ ...userInfo, ...data.updatedsInputs });
+
+    const updatedUser = {
+      ...userInfo,
+      ...data.updatedsInputs,
+    };
+
+    setUser({ ...user, ...updatedUser });
+
+    if (updatedUser.username) {
+      navigate(`/${updatedUser.username}`);
+    }
+
+    setModalIsOpen(!modalIsOpen);
+  };
+
   useEffect(() => {
     if (!userInfo) return;
 
@@ -85,6 +123,13 @@ export const Profile = () => {
     getUserInfo();
   }, [params.username]);
 
+  const handleInputValues = (e) => {
+    setUpdateUserValues({
+      ...updateUserValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const textFollowBtn = followingList.some(
     (uf) => uf.id_user_following === userInfo?.id,
   )
@@ -117,10 +162,28 @@ export const Profile = () => {
       <section className={`modal modal--edit ${modalClassName}`}>
         <h2 className="title l">Edit profile</h2>
         <section className="input-container-modal">
-          <input type="text" placeholder={userInfo.full_name} />
-          <input type="text" placeholder={`@${userInfo.username}`} />
+          <input
+            onChange={handleInputValues}
+            type="text"
+            placeholder={userInfo.full_name}
+            name="full_name"
+          />
+          <input
+            onChange={handleInputValues}
+            type="text"
+            placeholder={`@${userInfo.username}`}
+            name="username"
+          />
         </section>
-        <button className="btn-modal">Edit</button>
+        <button className="btn-modal" onClick={handleUpdateUser}>
+          Edit
+        </button>
+        <button
+          className="btn-modal edit"
+          onClick={() => setModalIsOpen(!modalIsOpen)}
+        >
+          Close
+        </button>
       </section>
       <section className="user-info">
         <section
