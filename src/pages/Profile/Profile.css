@@ -212,6 +212,10 @@
   border-radius: 2px;
 }
 
+.main--profile.active {
+  overflow-y: hidden;
+}
+
 .main--profile.active::before {
   content: "";
   inset: 0;
@@ -230,11 +234,11 @@
   background-color: #101322;
   border-radius: 10px;
   z-index: 9999;
-  top: 200px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   gap: 10px;
-  width: 400px;
+  width: 600px;
   animation: loadIn ease 0.2s;
 }
 
@@ -247,17 +251,25 @@
   display: flex;
 }
 
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
 .input-container-modal {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: 10px;
-  width: 100%;
+  margin-top: -50px;
+  width: 90%;
 }
 
 .input-container-modal input {
-  width: 90%;
+  width: 100%;
   height: 50px;
   padding-left: 1rem;
   background-color: transparent;
@@ -271,12 +283,31 @@
     box-shadow 0.2s ease;
 }
 
-.input-container-modal input::placeholder {
+.input-container-modal textarea {
+  width: 100%;
+  height: 100px;
+  padding-left: 1rem;
+  background-color: transparent;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding-top: 8px;
+  color: white;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+  resize: none;
+}
+
+.input-container-modal input::placeholder,
+.input-container-modal textarea::placeholder {
   color: #405569;
   font-size: 0.95rem;
 }
 
-.input-container-modal input:focus {
+.input-container-modal input:focus,
+.input-container-modal textarea:focus {
   outline: none;
   border: 1px solid #1334d8;
   box-shadow: 0 0 0 3px rgba(19, 52, 216, 0.15);
@@ -284,7 +315,6 @@
 
 .btn-modal {
   background-color: #1334d8;
-  width: 90%;
   height: 50px;
   border-radius: 10px;
   color: white;
@@ -295,9 +325,16 @@
   transition: all 0.3s ease;
 }
 
-.btn-modal.edit {
-  background-color: rgba(226, 225, 225, 0.121);
-  color: white;
+.btn-modal.close {
+  background-color: transparent;
+}
+
+.btn-modal.save {
+  width: 50px;
+}
+
+.btn-modal.close ion-icon {
+  font-size: 26px;
 }
 
 @keyframes loadIn {
@@ -307,4 +344,72 @@
   100% {
     opacity: 1;
   }
+}
+
+.image-profile-container {
+  width: 90%;
+  position: relative;
+}
+
+.image-profile-container .user-img {
+  position: absolute;
+  top: 200px;
+}
+
+.banner.image-modal {
+  position: relative;
+}
+
+.banner.image-modal::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.486);
+}
+
+.btn-update-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.289);
+  color: white;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 9999;
+}
+
+.btn-update-image:hover {
+  background-color: rgba(0, 0, 0, 0.656);
+}
+
+.user-img.modal-img {
+  position: relative;
+}
+
+.user-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.user-img-container::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.486);
+  border-radius: 50%;
+}
+
+.image_url_modal {
+  display: none;
 }

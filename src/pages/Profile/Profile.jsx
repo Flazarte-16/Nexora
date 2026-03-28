@@ -5,6 +5,7 @@ import { Link, useLocation, useParams } from "wouter";
 import { ProfileSkeleton } from "../../componentes/Skeletons/Skeletons";
 import { UserFollowingContext } from "../../context/UserFollowingContext";
 import { useAuth } from "../../hooks/useAuth";
+import { sileo } from "sileo";
 
 export const Profile = () => {
   const [posts, setPosts] = useState([]);
@@ -18,8 +19,11 @@ export const Profile = () => {
   const [updateUserValues, setUpdateUserValues] = useState({
     username: "",
     full_name: "",
+    description: "",
+    profile_image: null,
   });
   const [_, navigate] = useLocation();
+  const [imageUrlPreview, setImageUrlPreview] = useState("");
 
   const handleFollow = async () => {
     const response = await fetch(
@@ -57,36 +61,47 @@ export const Profile = () => {
   };
 
   const handleUpdateUser = async () => {
-    const response = await fetch("http://localhost:3000/v1/users/", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        username: updateUserValues.username,
-        full_name: updateUserValues.full_name,
-      }),
-    });
+    try {
+      const formData = new FormData();
+      formData.append("username", updateUserValues.username);
+      formData.append("full_name", updateUserValues.full_name);
+      formData.append("description", updateUserValues.description);
+      formData.append("profile_image", updateUserValues.profile_image);
 
-    const data = await response.json();
+      const response = await fetch("http://localhost:3000/v1/users/", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: formData,
+      });
 
-    alert(data.message);
+      const data = await response.json();
 
-    setUserInfo({ ...userInfo, ...data.updatedsInputs });
+      setUserInfo({ ...userInfo, ...data.updatedsInputs });
 
-    const updatedUser = {
-      ...userInfo,
-      ...data.updatedsInputs,
-    };
+      const updatedUser = {
+        ...userInfo,
+        ...data.updatedsInputs,
+      };
 
-    setUser({ ...user, ...updatedUser });
+      setUser({ ...user, ...updatedUser });
 
-    if (updatedUser.username) {
-      navigate(`/${updatedUser.username}`);
+      if (updatedUser.username) {
+        navigate(`/${updatedUser.username}`);
+      }
+
+      setUpdateUserValues({
+        username: "",
+        full_name: "",
+        description: "",
+        profile_image: null,
+      });
+      setModalIsOpen(!modalIsOpen);
+    } catch (e) {
+      console.log(e.message);
+    } finally {
     }
-
-    setModalIsOpen(!modalIsOpen);
   };
 
   useEffect(() => {
@@ -130,6 +145,23 @@ export const Profile = () => {
     });
   };
 
+  const handleImageUrlPreview = (e) => {
+    const file = e.target.files[0];
+
+    if (!file.type.startsWith("image/")) {
+      sileo.error({
+        title: "Please upload an image file.",
+        duration: 1000,
+        fill: "#000000",
+      });
+      return;
+    }
+
+    const imageUrl = URL.createObjectURL(file);
+    setImageUrlPreview(imageUrl);
+    setUpdateUserValues({ ...updateUserValues, profile_image: file });
+  };
+
   const textFollowBtn = followingList.some(
     (uf) => uf.id_user_following === userInfo?.id,
   )
@@ -160,30 +192,75 @@ export const Profile = () => {
   return (
     <main className={`main main--profile ${modalClassName}`}>
       <section className={`modal modal--edit ${modalClassName}`}>
-        <h2 className="title l">Edit profile</h2>
+        <section className="modal-header">
+          <button
+            className="btn-modal close"
+            onClick={() => setModalIsOpen(false)}
+          >
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h2 className="title l">Edit profile</h2>
+          <button className="btn-modal save" onClick={handleUpdateUser}>
+            Save
+          </button>
+        </section>
+        <section className="image-profile-container">
+          <section
+            className="banner image-modal"
+            style={{ backgroundImage: `url(${userInfo?.banner_image_url})` }}
+          >
+            <button className="btn-update-image">
+              <ion-icon name="camera-reverse-outline"></ion-icon>
+            </button>
+          </section>
+        </section>
         <section className="input-container-modal">
+          {imageUrlPreview ? (
+            <img
+              src={imageUrlPreview}
+              alt="Foto de perfil"
+              className="user-img modal-img"
+            />
+          ) : (
+            <section className="user-img-container">
+              <img
+                src={userInfo?.image_url}
+                alt="Foto de perfil"
+                className="user-img modal-img"
+              />
+              <input
+                type="file"
+                id="image_url_modal"
+                className="image_url_modal"
+                onChange={handleImageUrlPreview}
+              />
+              <label className="btn-update-image" htmlFor="image_url_modal">
+                <ion-icon name="camera-reverse-outline"></ion-icon>
+              </label>
+            </section>
+          )}
+
           <input
             onChange={handleInputValues}
             type="text"
             placeholder={userInfo.full_name}
             name="full_name"
+            value={updateUserValues.full_name}
           />
           <input
             onChange={handleInputValues}
             type="text"
             placeholder={`@${userInfo.username}`}
             name="username"
+            value={updateUserValues.username}
           />
+          <textarea
+            onChange={handleInputValues}
+            name="description"
+            placeholder={userInfo.description || "Description"}
+            value={updateUserValues.description}
+          ></textarea>
         </section>
-        <button className="btn-modal" onClick={handleUpdateUser}>
-          Edit
-        </button>
-        <button
-          className="btn-modal edit"
-          onClick={() => setModalIsOpen(!modalIsOpen)}
-        >
-          Close
-        </button>
       </section>
       <section className="user-info">
         <section
