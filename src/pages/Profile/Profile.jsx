@@ -21,9 +21,11 @@ export const Profile = () => {
     full_name: "",
     description: "",
     profile_image: null,
+    banner_image: null,
   });
   const [_, navigate] = useLocation();
   const [imageUrlPreview, setImageUrlPreview] = useState("");
+  const [bannerUrlPreview, setBannerUrlPreview] = useState("");
 
   const handleFollow = async () => {
     const response = await fetch(
@@ -66,7 +68,8 @@ export const Profile = () => {
       formData.append("username", updateUserValues.username);
       formData.append("full_name", updateUserValues.full_name);
       formData.append("description", updateUserValues.description);
-      formData.append("profile_image", updateUserValues.profile_image);
+      formData.append("image_url", updateUserValues.profile_image);
+      formData.append("banner_image_url", updateUserValues.banner_image);
 
       const response = await fetch("http://localhost:3000/v1/users/", {
         method: "PUT",
@@ -96,6 +99,7 @@ export const Profile = () => {
         full_name: "",
         description: "",
         profile_image: null,
+        banner_image: null,
       });
       setModalIsOpen(!modalIsOpen);
     } catch (e) {
@@ -158,8 +162,14 @@ export const Profile = () => {
     }
 
     const imageUrl = URL.createObjectURL(file);
-    setImageUrlPreview(imageUrl);
-    setUpdateUserValues({ ...updateUserValues, profile_image: file });
+
+    console.log(e.target.name);
+
+    e.target.name === "banner_image"
+      ? setBannerUrlPreview(imageUrl)
+      : setImageUrlPreview(imageUrl);
+
+    setUpdateUserValues({ ...updateUserValues, [e.target.name]: file });
   };
 
   const textFollowBtn = followingList.some(
@@ -207,11 +217,27 @@ export const Profile = () => {
         <section className="image-profile-container">
           <section
             className="banner image-modal"
-            style={{ backgroundImage: `url(${userInfo?.banner_image_url})` }}
+            style={{
+              backgroundImage: `url(${bannerUrlPreview ? bannerUrlPreview : userInfo?.banner_image_url})`,
+            }}
           >
-            <button className="btn-update-image">
-              <ion-icon name="camera-reverse-outline"></ion-icon>
-            </button>
+            {!bannerUrlPreview && (
+              <>
+                <input
+                  type="file"
+                  onChange={handleImageUrlPreview}
+                  name="banner_image"
+                  id="banner_image_url_modal"
+                  className="image_url_modal"
+                />
+                <label
+                  className="btn-update-image"
+                  htmlFor="banner_image_url_modal"
+                >
+                  <ion-icon name="camera-reverse-outline"></ion-icon>
+                </label>
+              </>
+            )}
           </section>
         </section>
         <section className="input-container-modal">
@@ -231,6 +257,7 @@ export const Profile = () => {
               <input
                 type="file"
                 id="image_url_modal"
+                name="profile_image"
                 className="image_url_modal"
                 onChange={handleImageUrlPreview}
               />

@@ -16,6 +16,10 @@
     sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 .app {
   display: flex;
   flex-direction: column;
