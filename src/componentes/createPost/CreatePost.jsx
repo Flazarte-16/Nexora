@@ -32,7 +32,11 @@ export const CreatePost = ({ setIsLoading }) => {
       const data = await response.json();
 
       if (data.type === "EMPTY_INPUTS") {
-        alert(data.message);
+        sileo.error({
+          title: data.message,
+          duration: 1000,
+          fill: "#000000",
+        });
         return;
       }
 
@@ -73,6 +77,8 @@ export const CreatePost = ({ setIsLoading }) => {
     });
   };
 
+  const buttonClass = !newPost.content && "disabled";
+
   return (
     <form className="input-container-create" onSubmit={handleSubmit}>
       <section className="input-text">
@@ -102,7 +108,12 @@ export const CreatePost = ({ setIsLoading }) => {
           <img className="image-preview" src={imagePreview} alt="file image" />
         )}
 
-        <button>Post</button>
+        <button
+          className={buttonClass}
+          disabled={newPost.content ? false : true}
+        >
+          Post
+        </button>
       </div>
     </form>
   );

@@ -67,21 +67,17 @@ export const SideBar = () => {
             location === `/${user.username}` && "active"
           }`}
         >
-          <ion-icon
-            className="sidebar-icon"
-            name="person-circle-sharp"
-          ></ion-icon>
+          <img
+            src={user.image_url}
+            alt="user image"
+            className="user-profile-image"
+          />
           <p>Profile</p>
         </Link>
         <div className="sidebar-item" onClick={handleLogoutClick}>
           <ion-icon className="sidebar-icon" name="log-out-outline"></ion-icon>
           <p>Log out</p>
         </div>
-      </div>
-
-      <div className="profile">
-        <img src={user.image_url} alt="your profile image" />
-        <h4 className="profile-name">{user.full_name}</h4>
       </div>
     </div>
   );

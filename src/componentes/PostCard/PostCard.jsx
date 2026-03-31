@@ -110,7 +110,7 @@ export const PostCard = ({ post }) => {
           >
             <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
           </button>
-          <p>{cantComments}</p>
+          <p>{cantComments || 0}</p>
         </article>
         <article className="post-card-actions">
           <button
@@ -119,7 +119,7 @@ export const PostCard = ({ post }) => {
           >
             <ion-icon className="sidebar-icon" name="heart"></ion-icon>
           </button>
-          <p>{cantLikes}</p>
+          <p>{cantLikes || 0}</p>
         </article>
       </article>
       <PostCommentList

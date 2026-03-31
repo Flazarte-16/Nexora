@@ -102,9 +102,9 @@
   transition: all 0.3s ease;
 }
 
-.input-post button:hover {
-  box-shadow: 0 6px 18px rgba(19, 52, 216, 0.4);
-  transform: translateY(-2px);
+.input-post button.disabled {
+  background-color: #888; /* gris */
+  cursor: not-allowed;
 }
 
 .input-post button:active {
