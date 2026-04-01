@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  background-color: #101322;
+  background-color: transparent;
   transition:
     width 0.3s ease,
     background-color 0.3s ease;
@@ -258,7 +258,8 @@
 }
 
 .user-profile-image {
-  height: 1.875rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  width: auto;
+  object-fit: cover;
 }
