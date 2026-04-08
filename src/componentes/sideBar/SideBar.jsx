@@ -89,7 +89,10 @@ export const RightSidebar = () => {
   return (
     <section className="sidebar-container sidebar-container--right">
       <section className="user-profile">
-        <img src={user.image_url} alt="profile image" />
+        <div className="profile-image-container">
+          <img src={user.image_url} alt="profile image" />
+          <div className="status-icon"></div>
+        </div>
         <section className="user-info-right-sidebar">
           <h2>{user.full_name}</h2>
           <p className="profile-username">@{user.username}</p>

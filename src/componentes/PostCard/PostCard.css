@@ -57,10 +57,14 @@
 }
 
 .card-header-info h4 {
-  color: #ffffff;
-  font-weight: 400;
+  color: #f9f9f9;
   letter-spacing: 0.8px;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .card-header-info p {
@@ -162,4 +166,5 @@
   width: 400px;
   height: auto;
   object-fit: contain;
+  border-radius: 15px;
 }
