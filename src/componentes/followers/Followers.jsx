@@ -21,7 +21,7 @@ export const Followers = () => {
 
   return (
     <div className="profiles-container">
-      <h2>Suggested for you</h2>
+      <h2>SUGGESTED FOR YOU</h2>
       {users &&
         users.length > 0 &&
         users.map((user) => <UserCard u={user} key={user.id} />)}

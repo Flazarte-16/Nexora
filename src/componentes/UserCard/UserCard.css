@@ -21,23 +21,24 @@
 }
 
 .profile-info h4 {
-  color: #ffffff;
-  font-weight: 400;
+  color: #f9f9f9;
   letter-spacing: 0.8px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .profile-username {
-  color: #94a3b3;
+  color: #ababab;
   letter-spacing: 0.6px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 .profiles img {
@@ -51,14 +52,12 @@
   border-radius: 10px;
   background-color: transparent;
   border-radius: 10px;
-  color: white;
+  color: #f9f9f9;
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.8125rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 400;
-  font-size: 0.8rem;
 }
 
 .profiles--explore {

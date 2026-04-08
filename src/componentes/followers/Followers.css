@@ -4,15 +4,15 @@
   justify-content: start;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  align-items: center;
   gap: 1.25rem;
   top: 130px;
-  width: 21.875rem;
+  width: 100%;
 }
 
 .profiles-container h2 {
-  color: #ffffff;
-  font-weight: 500;
+  color: #ababab;
+  font-weight: 700;
   font-size: 1rem;
   line-height: 1.2;
+  letter-spacing: 0.11rem;
 }

@@ -84,8 +84,17 @@ export const SideBar = () => {
 };
 
 export const RightSidebar = () => {
+  const { user } = useAuth();
+
   return (
     <section className="sidebar-container sidebar-container--right">
+      <section className="user-profile">
+        <img src={user.image_url} alt="profile image" />
+        <section className="user-info-right-sidebar">
+          <h2>{user.full_name}</h2>
+          <p className="profile-username">@{user.username}</p>
+        </section>
+      </section>
       <Followers />
     </section>
   );
