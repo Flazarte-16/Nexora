@@ -16,6 +16,8 @@ export const SideBar = () => {
     0,
   );
 
+  console.log(user);
+
   const handleLogoutClick = () => {
     const response = logout();
     if (response.type === "OK") {

@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -20,7 +22,7 @@ export const PostContextProvider = ({ children }) => {
       }
     };
     getPosts();
-  }, []);
+  }, [user]);
 
   return (
     <PostContext.Provider value={{ posts, setPosts, isLoading }}>

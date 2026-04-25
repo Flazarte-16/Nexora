@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CreatePost } from "../../componentes/CreatePost/CreatePost";
 import "./Home.css";
 import "ionicons";
@@ -6,13 +6,11 @@ import { PostCard } from "../../componentes/PostCard/PostCard";
 import { PostCardSkeleton } from "../../componentes/Skeletons/Skeletons";
 import { usePost } from "../../hooks/usePost";
 import { UserFollowingContext } from "../../context/UserFollowingContext";
-import { useAuth } from "../../hooks/useAuth";
 
 export const Home = () => {
   const { posts, isLoading } = usePost();
   const { followingList } = useContext(UserFollowingContext);
   const [isLoadingNewPost, setIsLoadingNewPost] = useState(false);
-  const { user } = useAuth();
 
   const [feedType, setFeedType] = useState("For You");
 
