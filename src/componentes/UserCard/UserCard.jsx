@@ -26,14 +26,10 @@ export const UserCard = ({ u, variant }) => {
     } else if (data.type === "removed") {
       setFollowingList((prev) =>
         [...prev].filter(
-          (uf) =>
-            uf.id_user_follower !== data.userFollower.id_user_follower &&
-            uf.id_user_following !== data.userFollower.id_user_following,
+          (uf) => uf.id_user_following !== data.userFollower.id_user_following,
         ),
       );
     }
-
-    alert(data.message);
   };
 
   const textFollowBtn = followingList.some(
@@ -41,6 +37,8 @@ export const UserCard = ({ u, variant }) => {
   )
     ? "Following"
     : "Follow";
+
+  console.log(followingList);
 
   return (
     <>
