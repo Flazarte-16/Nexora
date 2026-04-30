@@ -36,8 +36,13 @@
 
 .card-header-left {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.time-ago {
+  color: #94a3b3;
+  font-size: 0.9rem;
 }
 
 .card-header-right p {
@@ -167,4 +172,50 @@
   height: auto;
   object-fit: contain;
   border-radius: 15px;
+}
+
+.card-header-right ion-icon {
+  color: white;
+  cursor: pointer;
+}
+
+.card-header-right {
+  position: relative;
+}
+
+.card-header-right button {
+  background-color: transparent;
+  border: 0;
+}
+
+.context-menu-options {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+.context-menu-options {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  height: 0px;
+  padding: 20px;
+  background-color: #ffffffe0;
+  border: 1px solid #1e293b;
+}
+
+.context-menu-options.active {
+  display: flex;
+}
+
+.context-menu-options button {
+  background-color: transparent;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.context-menu-options .delete {
+  color: red;
 }

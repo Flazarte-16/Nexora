@@ -39,6 +39,7 @@ export const Explore = () => {
         placeholder="search..."
         name="username"
         onChange={handleSearch}
+        autoComplete="off"
       />
       {username && (
         <section className="search-info">

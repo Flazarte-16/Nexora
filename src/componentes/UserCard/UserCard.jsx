@@ -38,8 +38,6 @@ export const UserCard = ({ u, variant }) => {
     ? "Following"
     : "Follow";
 
-  console.log(followingList);
-
   return (
     <>
       <div

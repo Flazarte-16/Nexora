@@ -57,10 +57,6 @@ export const SideBar = () => {
           <p>Notifications</p>
           {pendingNotifications > 0 && <span>{pendingNotifications}</span>}
         </Link>
-        <div className="sidebar-item">
-          <ion-icon className="sidebar-icon" name="chatbox-sharp"></ion-icon>
-          <p>Messages</p>
-        </div>
         <Link
           to={`/${user.username}`}
           className={`sidebar-item ${

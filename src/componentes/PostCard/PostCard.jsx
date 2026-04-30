@@ -3,13 +3,17 @@ import "./PostCard.css";
 import { Link } from "wouter";
 import { useAuth } from "../../hooks/useAuth";
 import { PostCommentList } from "../PostCommentList/PostCommentList";
+import { usePost } from "../../hooks/usePost";
+import { sileo } from "sileo";
 
 export const PostCard = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
+  const [contextIsActive, setContextIsActive] = useState(false);
   const [cantLikes, setCantLikes] = useState(post.cant_likes);
   const [cantComments, setCantComments] = useState(post?.cant_comments);
   const [likedPosts, setLikedPosts] = useState([]);
   const { user } = useAuth();
+  const { setPosts } = usePost();
 
   const handleLike = async () => {
     try {
@@ -39,6 +43,23 @@ export const PostCard = ({ post }) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const deletePost = async () => {
+    const response = await fetch(`http://localhost:3000/v1/posts/${post.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    await response.json();
+    sileo.success({
+      title: "Post deleted successfully",
+      duration: 1000,
+      fill: "#000000",
+    });
+
+    setPosts((prev) => [...prev].filter((p) => p.id !== post.id));
   };
 
   useEffect(() => {
@@ -82,6 +103,8 @@ export const PostCard = ({ post }) => {
     });
   };
 
+  const contextMenuActive = contextIsActive && "active";
+
   return (
     <article className="post-card">
       <section className="card-header">
@@ -93,9 +116,19 @@ export const PostCard = ({ post }) => {
             </Link>
             <p>@{post.user.username}</p>
           </section>
+          <p className="time-ago">{post.time_ago}</p>
         </section>
         <section className="card-header-right">
-          <p>{post.time_ago}</p>
+          {post.user_id === user.id && (
+            <button onClick={() => setContextIsActive(!contextIsActive)}>
+              <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+            </button>
+          )}
+          <section className={`context-menu-options ${contextMenuActive}`}>
+            <button onClick={deletePost} className="delete">
+              Delete
+            </button>
+          </section>
         </section>
       </section>
       <p className="card-content">{formattedContent(post.content)}</p>
